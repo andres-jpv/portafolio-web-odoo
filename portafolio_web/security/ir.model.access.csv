@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_portfolio_developer_user,portfolio.developer.user,model_portfolio_developer,base.group_user,1,1,1,1
+access_portfolio_skill_tag_user,portfolio.skill.tag.user,model_portfolio_skill_tag,base.group_user,1,1,1,1
+access_portfolio_skill_line_user,portfolio.skill.line.user,model_portfolio_skill_line,base.group_user,1,1,1,1
+access_portfolio_experience_user,portfolio.experience.user,model_portfolio_experience,base.group_user,1,1,1,1
+access_portfolio_project_user,portfolio.project.user,model_portfolio_project,base.group_user,1,1,1,1
+access_portfolio_course_user,portfolio.course.user,model_portfolio_course,base.group_user,1,1,1,1
+access_portfolio_education_user,portfolio.education.user,model_portfolio_education,base.group_user,1,1,1,1
+access_portfolio_developer_public,portfolio.developer.public,model_portfolio_developer,base.group_public,1,0,0,0
+access_portfolio_skill_tag_public,portfolio.skill.tag.public,model_portfolio_skill_tag,base.group_public,1,0,0,0
+access_portfolio_skill_line_public,portfolio.skill.line.public,model_portfolio_skill_line,base.group_public,1,0,0,0
+access_portfolio_experience_public,portfolio.experience.public,model_portfolio_experience,base.group_public,1,0,0,0
+access_portfolio_project_public,portfolio.project.public,model_portfolio_project,base.group_public,1,0,0,0
+access_portfolio_course_public,portfolio.course.public,model_portfolio_course,base.group_public,1,0,0,0
+access_portfolio_education_public,portfolio.education.public,model_portfolio_education,base.group_public,1,0,0,0

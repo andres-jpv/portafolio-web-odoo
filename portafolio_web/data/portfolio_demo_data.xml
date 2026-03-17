@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ===== SKILL TAGS ===== -->
+        <record id="tag_python" model="portfolio.skill.tag">
+            <field name="name">Python</field>
+            <field name="color">10</field>
+        </record>
+        <record id="tag_postgresql" model="portfolio.skill.tag">
+            <field name="name">PostgreSQL</field>
+            <field name="color">4</field>
+        </record>
+        <record id="tag_docker" model="portfolio.skill.tag">
+            <field name="name">Docker</field>
+            <field name="color">6</field>
+        </record>
+
+        <!-- ===== DEVELOPER ===== -->
+        <record id="developer_jordan" model="portfolio.developer">
+            <field name="name">Jordan Andres Pincay Vinces</field>
+            <field name="job_title">Desarrollador Backend Odoo &amp; Automatización IA</field>
+            <field name="email">j.pincayvinces@gmail.com</field>
+            <field name="phone">+593 99 071 1798</field>
+            <field name="location">Guayaquil, Ecuador</field>
+            <field name="is_available">True</field>
+            <field name="odoo_version">v19</field>
+            <field name="ia_ready_pct">100</field>
+            <field name="linkedin">jpincayvinces</field>
+            <field name="github">andres-jpv</field>
+            <field name="category">junior</field>
+            <field name="skill_tag_ids" eval="[(4, ref('tag_python')), (4, ref('tag_postgresql')), (4, ref('tag_docker'))]"/>
+            <field name="profile_bio">&lt;p&gt;
+                Especialista en el ecosistema &lt;strong&gt;Odoo ERP&lt;/strong&gt; (v18/19). Mi enfoque se centra en la
+                creación de módulos personalizados que optimizan la lógica de negocio, utilizando herencia de modelos,
+                vistas XPath y reportes QWeb. Además, integro flujos de automatización con &lt;strong&gt;n8n&lt;/strong&gt;
+                y agentes de Inteligencia Artificial para transformar la operatividad empresarial.
+            &lt;/p&gt;</field>
+        </record>
+
+        <!-- ===== HARD SKILLS ===== -->
+        <record id="hard_skill_1" model="portfolio.skill.line">
+            <field name="developer_hard_id" ref="developer_jordan"/>
+            <field name="name">Desarrollo de Add-ons</field>
+            <field name="checked">True</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="hard_skill_2" model="portfolio.skill.line">
+            <field name="developer_hard_id" ref="developer_jordan"/>
+            <field name="name">ORM API (search, browse, write)</field>
+            <field name="checked">True</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="hard_skill_3" model="portfolio.skill.line">
+            <field name="developer_hard_id" ref="developer_jordan"/>
+            <field name="name">Control de Versiones (Git)</field>
+            <field name="checked">True</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <!-- ===== ECOSYSTEM SKILLS ===== -->
+        <record id="eco_skill_1" model="portfolio.skill.line">
+            <field name="developer_ecosystem_id" ref="developer_jordan"/>
+            <field name="name">Odoo Enterprise &amp; Community</field>
+            <field name="checked">True</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="eco_skill_2" model="portfolio.skill.line">
+            <field name="developer_ecosystem_id" ref="developer_jordan"/>
+            <field name="name">Integración con Agentes IA</field>
+            <field name="checked">True</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="eco_skill_3" model="portfolio.skill.line">
+            <field name="developer_ecosystem_id" ref="developer_jordan"/>
+            <field name="name">Linux Server Admin</field>
+            <field name="checked">True</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <!-- ===== EXPERIENCIA ===== -->
+        <record id="exp_freelance" model="portfolio.experience">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="company">Proyecto Independiente / Freelance</field>
+            <field name="position">Desarrollador Odoo Junior</field>
+            <field name="location">Guayaquil, Ecuador</field>
+            <field name="date_start">2025-05-01</field>
+            <field name="is_current">True</field>
+            <field name="highlights">Desarrollo de módulos completos con arquitectura profesional: modelos, vistas, seguridad, reportes QWeb y secuencias automáticas.
+Implementación de lógica de negocio con decoradores (@api.depends, @api.constrains, @api.onchange) y métodos ORM (search, create, write, unlink).
+Migración exitosa de módulos de Odoo 18 a 19, incluyendo refactorización de sintaxis deprecada y ajuste de vistas XML.
+Configuración de entornos aislados con Docker/DevContainers y gestión de múltiples proyectos con archivos odoo.conf independientes.
+Desarrollo de scripts de restauración automatizada de backups (dump.sql + filestore) usando PostgreSQL.</field>
+        </record>
+
+        <!-- ===== PROYECTOS ===== -->
+        <record id="proj_library" model="portfolio.project">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="name">Sistema de Gestión Bibliotecaria (Library App)</field>
+            <field name="summary">Módulo integral para la administración de préstamos, autores y libros en Odoo.</field>
+            <field name="highlights">Modelado relacional completo (Many2one, One2many, Many2many) con validaciones SQL (ISBN único) y constraints Python.
+Wizards (TransientModel) para renovación masiva de préstamos con cálculos de fechas automatizados y validación de estados.
+Seguridad por roles (Lector, Usuario, Bibliotecario) con herencia de grupos y reglas de registro dinámicas.
+Reporte PDF de Carnet de Préstamo con QWeb, Bootstrap y lógica condicional (t-if, t-foreach).
+Herencia de res.partner para agregar campo "Socio de Biblioteca" al modelo de Contactos.</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="proj_sales" model="portfolio.project">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="name">Sale.order — Extensión de Ventas</field>
+            <field name="summary">Personalización técnica del núcleo de ventas de Odoo.</field>
+            <field name="highlights">Herencia de modelos (_inherit sobre sale.order) y selectores XPath para inyectar campos en flujos de venta estándar.
+Smart Buttons con campos computados y filtrado por dominio para seguimiento de transacciones en tiempo real.</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="proj_n8n" model="portfolio.project">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="name">Automatización Empresarial con n8n</field>
+            <field name="summary">Flujos automatizados y agentes de IA para atención al cliente multicanal.</field>
+            <field name="highlights">Chatbots multimodales con procesamiento de voz e imágenes, integrados a WhatsApp y Telegram.
+Agentes RAG con bases vectoriales (Supabase/Pinecone) para consulta inteligente de documentos empresariales.
+Escalamiento automático de conversaciones bot-a-humano mediante Chatwoot.</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <!-- ===== CURSOS ===== -->
+        <record id="course_odoo" model="portfolio.course">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="name">Curso Técnico de Programación Odoo (Backend)</field>
+            <field name="institution">Campus Cleverit</field>
+            <field name="year">2025</field>
+        </record>
+        <record id="course_n8n_negocios" model="portfolio.course">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="name">Agentes de IA con n8n — Casos en Negocios y Finanzas</field>
+            <field name="institution">Udemy</field>
+            <field name="year">2025</field>
+        </record>
+        <record id="course_n8n_chatbots" model="portfolio.course">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="name">N8N Intermedio: Chatbots IA con Evolution y Chatwoot</field>
+            <field name="institution">Udemy</field>
+            <field name="year">2025</field>
+        </record>
+
+        <!-- ===== EDUCACIÓN ===== -->
+        <record id="edu_naval" model="portfolio.education">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="institution">Academia Naval Almirante Illingworth</field>
+            <field name="area">Informática</field>
+            <field name="degree">Bachiller Técnico</field>
+            <field name="location">Guayaquil, Ecuador</field>
+            <field name="date_start">2020-05-01</field>
+            <field name="date_end">2026-03-01</field>
+            <field name="highlights">Formación en redes de datos (Cisco Packet Tracer), lógica de programación y gestión de bases de datos.</field>
+        </record>
+
+    </data>
+</odoo>

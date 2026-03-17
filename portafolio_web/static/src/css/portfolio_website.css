@@ -1,0 +1,580 @@
+/* ============================================================
+   Portfolio Website — Light & Dark Mode
+   ============================================================ */
+
+/* ---------- Variables Light (default) ---------- */
+:root {
+    --pf-bg: #ffffff;
+    --pf-bg-card: #f8f9fa;
+    --pf-bg-header: #1a1a2e;
+    --pf-text: #212529;
+    --pf-text-muted: #6c757d;
+    --pf-text-header: #ffffff;
+    --pf-accent: #6d28d9;
+    --pf-accent-light: #ede9fe;
+    --pf-border: #dee2e6;
+    --pf-check: #16a34a;
+    --pf-badge-bg: #ede9fe;
+    --pf-badge-text: #5b21b6;
+    --pf-section-title: #1a1a2e;
+    --pf-card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --pf-toggle-bg: #374151;
+    --pf-toggle-text: #ffffff;
+    --pf-timeline-line: #d1d5db;
+}
+
+/* ---------- Variables Dark ---------- */
+[data-pf-theme="dark"] {
+    --pf-bg: #0d1117;
+    --pf-bg-card: #161b22;
+    --pf-bg-header: #0d1117;
+    --pf-text: #e6edf3;
+    --pf-text-muted: #8b949e;
+    --pf-text-header: #e6edf3;
+    --pf-accent: #a78bfa;
+    --pf-accent-light: #1e1b4b;
+    --pf-border: #30363d;
+    --pf-check: #4ade80;
+    --pf-badge-bg: #1e1b4b;
+    --pf-badge-text: #c4b5fd;
+    --pf-section-title: #a78bfa;
+    --pf-card-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    --pf-toggle-bg: #f3f4f6;
+    --pf-toggle-text: #111827;
+    --pf-timeline-line: #30363d;
+}
+
+/* ============================================================
+   BASE LAYOUT
+   ============================================================ */
+.pf-wrapper {
+    background-color: var(--pf-bg);
+    color: var(--pf-text);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================================
+   DARK/LIGHT TOGGLE BUTTON (flotante)
+   ============================================================ */
+.pf-theme-toggle {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--pf-toggle-bg);
+    color: var(--pf-toggle-text);
+    border: none;
+    border-radius: 50px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pf-theme-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* ============================================================
+   HERO HEADER
+   ============================================================ */
+.pf-hero {
+    background: var(--pf-bg-header);
+    color: var(--pf-text-header);
+    padding: 60px 0 40px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.pf-hero__avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--pf-accent);
+    margin-bottom: 20px;
+}
+
+.pf-hero__avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--pf-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 48px;
+    color: white;
+}
+
+.pf-hero__name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--pf-text-header);
+}
+
+.pf-hero__title {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+[data-pf-theme="dark"] .pf-hero__title {
+    color: var(--pf-text-muted);
+}
+
+.pf-hero__badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.pf-badge {
+    background: var(--pf-badge-bg);
+    color: var(--pf-badge-text);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.pf-hero__contacts {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.pf-hero__contact-item {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+}
+
+[data-pf-theme="dark"] .pf-hero__contact-item {
+    color: var(--pf-text-muted);
+}
+
+.pf-hero__contact-item:hover {
+    color: var(--pf-accent);
+}
+
+/* ============================================================
+   AVAILABILITY BADGE
+   ============================================================ */
+.pf-available-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(22, 163, 74, 0.15);
+    color: #16a34a;
+    border: 1px solid rgba(22, 163, 74, 0.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 12px;
+    letter-spacing: 0.5px;
+}
+
+.pf-available-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #16a34a;
+    border-radius: 50%;
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ============================================================
+   CONTENT AREA
+   ============================================================ */
+.pf-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 20px;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.pf-section {
+    margin-bottom: 48px;
+}
+
+.pf-section__title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--pf-section-title);
+    border-bottom: 2px solid var(--pf-accent);
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+}
+
+/* ============================================================
+   PERFIL
+   ============================================================ */
+.pf-profile-text {
+    font-size: 0.97rem;
+    line-height: 1.8;
+    color: var(--pf-text);
+}
+
+/* ============================================================
+   HABILIDADES (2 columnas)
+   ============================================================ */
+.pf-skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+@media (max-width: 640px) {
+    .pf-skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pf-skills-group__title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--pf-text-muted);
+    margin-bottom: 12px;
+}
+
+.pf-skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--pf-border);
+    font-size: 0.92rem;
+    color: var(--pf-text);
+}
+
+.pf-skill-row:last-child {
+    border-bottom: none;
+}
+
+.pf-skill-check {
+    color: var(--pf-check);
+    font-size: 1rem;
+}
+
+/* ============================================================
+   EXPERIENCIA
+   ============================================================ */
+.pf-experience-item {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 28px;
+}
+
+.pf-experience-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pf-accent);
+}
+
+.pf-experience-item::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 16px;
+    bottom: -20px;
+    width: 2px;
+    background: var(--pf-timeline-line);
+}
+
+.pf-experience-item:last-child::after {
+    display: none;
+}
+
+.pf-exp__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.pf-exp__title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--pf-text);
+}
+
+.pf-exp__company {
+    color: var(--pf-accent);
+    font-weight: 600;
+}
+
+.pf-exp__date {
+    font-size: 0.82rem;
+    color: var(--pf-text-muted);
+    white-space: nowrap;
+}
+
+.pf-exp__location {
+    font-size: 0.85rem;
+    color: var(--pf-text-muted);
+    margin-bottom: 10px;
+}
+
+.pf-exp__highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pf-exp__highlights li {
+    font-size: 0.88rem;
+    color: var(--pf-text);
+    padding: 3px 0 3px 16px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.pf-exp__highlights li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--pf-accent);
+    font-weight: 700;
+}
+
+/* ============================================================
+   PROYECTOS (cards)
+   ============================================================ */
+.pf-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.pf-project-card {
+    background: var(--pf-bg-card);
+    border: 1px solid var(--pf-border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--pf-card-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pf-project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+[data-pf-theme="dark"] .pf-project-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.pf-project-card__name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--pf-text);
+    margin-bottom: 6px;
+}
+
+.pf-project-card__summary {
+    font-size: 0.85rem;
+    color: var(--pf-text-muted);
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.pf-project-card__highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pf-project-card__highlights li {
+    font-size: 0.83rem;
+    color: var(--pf-text);
+    padding: 2px 0 2px 14px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.pf-project-card__highlights li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--pf-accent);
+    font-size: 0.75rem;
+    top: 3px;
+}
+
+/* ============================================================
+   CURSOS
+   ============================================================ */
+.pf-course-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--pf-border);
+}
+
+.pf-course-item:last-child {
+    border-bottom: none;
+}
+
+.pf-course-item__name {
+    font-weight: 600;
+    font-size: 0.93rem;
+    color: var(--pf-text);
+}
+
+.pf-course-item__institution {
+    font-size: 0.82rem;
+    color: var(--pf-text-muted);
+    margin-top: 2px;
+}
+
+.pf-course-item__year {
+    font-size: 0.82rem;
+    color: var(--pf-text-muted);
+    white-space: nowrap;
+    margin-left: 16px;
+}
+
+/* ============================================================
+   EDUCACIÓN
+   ============================================================ */
+.pf-education-item {
+    margin-bottom: 20px;
+    padding: 18px;
+    background: var(--pf-bg-card);
+    border: 1px solid var(--pf-border);
+    border-radius: 10px;
+}
+
+.pf-education-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.pf-education-item__institution {
+    font-weight: 700;
+    font-size: 0.97rem;
+    color: var(--pf-text);
+}
+
+.pf-education-item__degree {
+    font-size: 0.88rem;
+    color: var(--pf-accent);
+    font-weight: 600;
+}
+
+.pf-education-item__date {
+    font-size: 0.82rem;
+    color: var(--pf-text-muted);
+    white-space: nowrap;
+}
+
+.pf-education-item__area {
+    font-size: 0.85rem;
+    color: var(--pf-text-muted);
+}
+
+.pf-education-item__highlights {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--pf-text-muted);
+    line-height: 1.6;
+}
+
+/* ============================================================
+   FOOTER DEL PORTAFOLIO
+   ============================================================ */
+.pf-footer {
+    background: var(--pf-bg-card);
+    border-top: 1px solid var(--pf-border);
+    text-align: center;
+    padding: 24px;
+    font-size: 0.82rem;
+    color: var(--pf-text-muted);
+    transition: background-color 0.3s ease;
+}
+
+/* ============================================================
+   HABILIDADES DETALLADAS (one-liner por categoría)
+   ============================================================ */
+.pf-skill-category {
+    margin-bottom: 16px;
+}
+
+.pf-skill-category__label {
+    font-weight: 700;
+    color: var(--pf-text);
+    font-size: 0.9rem;
+    display: inline;
+}
+
+.pf-skill-category__details {
+    color: var(--pf-text-muted);
+    font-size: 0.88rem;
+    display: inline;
+    margin-left: 4px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 480px) {
+    .pf-hero__name {
+        font-size: 1.8rem;
+    }
+
+    .pf-projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pf-theme-toggle {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+}

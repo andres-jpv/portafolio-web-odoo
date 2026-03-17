@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portafolio_page" name="Portafolio Web">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Portafolio — <t t-esc="developer.name"/></t>
+
+            <div class="pf-wrapper" data-pf-theme="light">
+
+                <!-- ====== TOGGLE DARK/LIGHT ====== -->
+                <button id="pf-theme-toggle"
+                        class="pf-theme-toggle"
+                        title="Cambiar tema">
+                    &#9790; Modo Oscuro
+                </button>
+
+                <!-- ====== HERO HEADER ====== -->
+                <section class="pf-hero">
+                    <div class="container">
+
+                        <!-- Foto -->
+                        <t t-if="developer.photo">
+                            <img t-attf-src="data:image/png;base64,#{developer.photo}"
+                                 class="pf-hero__avatar"
+                                 t-att-alt="developer.name"/>
+                        </t>
+                        <t t-else="">
+                            <div class="pf-hero__avatar-placeholder">
+                                <span>&#128100;</span>
+                            </div>
+                        </t>
+
+                        <!-- Nombre y título -->
+                        <h1 class="pf-hero__name" t-esc="developer.name"/>
+                        <p class="pf-hero__title" t-esc="developer.job_title"/>
+
+                        <!-- Disponibilidad -->
+                        <t t-if="developer.is_available">
+                            <span class="pf-available-badge">DISPONIBLE PARA PROYECTOS</span>
+                        </t>
+
+                        <!-- Badges tecnologías -->
+                        <div class="pf-hero__badges mt-3">
+                            <t t-foreach="developer.skill_tag_ids" t-as="tag">
+                                <span class="pf-badge" t-esc="tag.name"/>
+                            </t>
+                        </div>
+
+                        <!-- Contacto -->
+                        <div class="pf-hero__contacts">
+                            <t t-if="developer.email">
+                                <a t-attf-href="mailto:#{developer.email}"
+                                   class="pf-hero__contact-item">
+                                    &#9993; <span t-esc="developer.email"/>
+                                </a>
+                            </t>
+                            <t t-if="developer.phone">
+                                <a t-attf-href="tel:#{developer.phone}"
+                                   class="pf-hero__contact-item">
+                                    &#128222; <span t-esc="developer.phone"/>
+                                </a>
+                            </t>
+                            <t t-if="developer.location">
+                                <span class="pf-hero__contact-item">
+                                    &#128205; <span t-esc="developer.location"/>
+                                </span>
+                            </t>
+                            <t t-if="developer.linkedin">
+                                <a t-attf-href="https://linkedin.com/in/#{developer.linkedin}"
+                                   class="pf-hero__contact-item"
+                                   target="_blank" rel="noopener">
+                                    in <span t-esc="developer.linkedin"/>
+                                </a>
+                            </t>
+                            <t t-if="developer.github">
+                                <a t-attf-href="https://github.com/#{developer.github}"
+                                   class="pf-hero__contact-item"
+                                   target="_blank" rel="noopener">
+                                    &#9728; <span t-esc="developer.github"/>
+                                </a>
+                            </t>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ====== CONTENIDO PRINCIPAL ====== -->
+                <div class="pf-content">
+
+                    <!-- SECCIÓN: PERFIL PROFESIONAL -->
+                    <t t-if="developer.profile_bio">
+                        <section class="pf-section">
+                            <h2 class="pf-section__title">Perfil Profesional</h2>
+                            <div class="pf-profile-text" t-raw="developer.profile_bio"/>
+                        </section>
+                    </t>
+
+                    <!-- SECCIÓN: HABILIDADES -->
+                    <t t-if="developer.hard_skill_ids or developer.ecosystem_skill_ids">
+                        <section class="pf-section">
+                            <h2 class="pf-section__title">Habilidades Técnicas</h2>
+                            <div class="pf-skills-grid">
+                                <!-- Hard Skills -->
+                                <t t-if="developer.hard_skill_ids">
+                                    <div>
+                                        <p class="pf-skills-group__title">Hard Skills</p>
+                                        <t t-foreach="developer.hard_skill_ids" t-as="skill">
+                                            <div class="pf-skill-row">
+                                                <span t-esc="skill.name"/>
+                                                <t t-if="skill.checked">
+                                                    <span class="pf-skill-check">&#10003;</span>
+                                                </t>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </t>
+                                <!-- Ecosistema -->
+                                <t t-if="developer.ecosystem_skill_ids">
+                                    <div>
+                                        <p class="pf-skills-group__title">Ecosistema</p>
+                                        <t t-foreach="developer.ecosystem_skill_ids" t-as="skill">
+                                            <div class="pf-skill-row">
+                                                <span t-esc="skill.name"/>
+                                                <t t-if="skill.checked">
+                                                    <span class="pf-skill-check">&#10003;</span>
+                                                </t>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </t>
+                            </div>
+                        </section>
+                    </t>
+
+                    <!-- SECCIÓN: EXPERIENCIA -->
+                    <t t-if="developer.experience_ids">
+                        <section class="pf-section">
+                            <h2 class="pf-section__title">Experiencia</h2>
+                            <t t-foreach="developer.experience_ids" t-as="exp">
+                                <div class="pf-experience-item">
+                                    <div class="pf-exp__header">
+                                        <div>
+                                            <span class="pf-exp__title" t-esc="exp.position"/>
+                                            <span class="text-muted">, </span>
+                                            <span class="pf-exp__company" t-esc="exp.company"/>
+                                        </div>
+                                        <span class="pf-exp__date">
+                                            <t t-if="exp.date_start">
+                                                <t t-esc="exp.date_start"/>
+                                            </t>
+                                            <t t-if="exp.is_current"> — presente</t>
+                                            <t t-elif="exp.date_end"> — <t t-esc="exp.date_end"/></t>
+                                        </span>
+                                    </div>
+                                    <t t-if="exp.location">
+                                        <p class="pf-exp__location">&#128205; <t t-esc="exp.location"/></p>
+                                    </t>
+                                    <t t-if="exp.highlights">
+                                        <ul class="pf-exp__highlights">
+                                            <t t-foreach="exp.highlights.split('\n')" t-as="line">
+                                                <t t-if="line.strip()">
+                                                    <li t-esc="line.strip()"/>
+                                                </t>
+                                            </t>
+                                        </ul>
+                                    </t>
+                                </div>
+                            </t>
+                        </section>
+                    </t>
+
+                    <!-- SECCIÓN: PROYECTOS -->
+                    <t t-if="developer.project_ids">
+                        <section class="pf-section">
+                            <h2 class="pf-section__title">Proyectos</h2>
+                            <div class="pf-projects-grid">
+                                <t t-foreach="developer.project_ids" t-as="proj">
+                                    <div class="pf-project-card">
+                                        <div class="pf-project-card__name" t-esc="proj.name"/>
+                                        <t t-if="proj.summary">
+                                            <p class="pf-project-card__summary" t-esc="proj.summary"/>
+                                        </t>
+                                        <t t-if="proj.highlights">
+                                            <ul class="pf-project-card__highlights">
+                                                <t t-foreach="proj.highlights.split('\n')" t-as="line">
+                                                    <t t-if="line.strip()">
+                                                        <li t-esc="line.strip()"/>
+                                                    </t>
+                                                </t>
+                                            </ul>
+                                        </t>
+                                    </div>
+                                </t>
+                            </div>
+                        </section>
+                    </t>
+
+                    <!-- SECCIÓN: CURSOS -->
+                    <t t-if="developer.course_ids">
+                        <section class="pf-section">
+                            <h2 class="pf-section__title">Cursos y Certificaciones</h2>
+                            <t t-foreach="developer.course_ids" t-as="course">
+                                <div class="pf-course-item">
+                                    <div>
+                                        <div class="pf-course-item__name" t-esc="course.name"/>
+                                        <t t-if="course.institution">
+                                            <div class="pf-course-item__institution" t-esc="course.institution"/>
+                                        </t>
+                                    </div>
+                                    <t t-if="course.year">
+                                        <span class="pf-course-item__year" t-esc="course.year"/>
+                                    </t>
+                                </div>
+                            </t>
+                        </section>
+                    </t>
+
+                    <!-- SECCIÓN: EDUCACIÓN -->
+                    <t t-if="developer.education_ids">
+                        <section class="pf-section">
+                            <h2 class="pf-section__title">Educación</h2>
+                            <t t-foreach="developer.education_ids" t-as="edu">
+                                <div class="pf-education-item">
+                                    <div class="pf-education-item__header">
+                                        <div>
+                                            <div class="pf-education-item__institution" t-esc="edu.institution"/>
+                                            <t t-if="edu.degree">
+                                                <div class="pf-education-item__degree">
+                                                    <t t-esc="edu.degree"/>
+                                                    <t t-if="edu.area"> en <t t-esc="edu.area"/></t>
+                                                </div>
+                                            </t>
+                                            <t t-if="edu.location">
+                                                <div class="pf-education-item__area">&#128205; <t t-esc="edu.location"/></div>
+                                            </t>
+                                        </div>
+                                        <div class="pf-education-item__date">
+                                            <t t-if="edu.date_start"><t t-esc="edu.date_start"/></t>
+                                            <t t-if="edu.date_end"> — <t t-esc="edu.date_end"/></t>
+                                        </div>
+                                    </div>
+                                    <t t-if="edu.highlights">
+                                        <div class="pf-education-item__highlights" t-esc="edu.highlights"/>
+                                    </t>
+                                </div>
+                            </t>
+                        </section>
+                    </t>
+
+                </div><!-- /pf-content -->
+
+                <!-- ====== FOOTER ====== -->
+                <footer class="pf-footer">
+                    <span t-esc="developer.name"/> — Portafolio Profesional
+                    &#183; Desarrollado con Odoo 19
+                </footer>
+
+            </div><!-- /pf-wrapper -->
+        </t>
+    </template>
+
+</odoo>

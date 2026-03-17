@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!-- FORM VIEW                                                     -->
+    <!-- ============================================================ -->
+    <record id="portfolio_developer_form_view" model="ir.ui.view">
+        <field name="name">portfolio.developer.form</field>
+        <field name="model">portfolio.developer</field>
+        <field name="arch" type="xml">
+            <form string="Desarrollador">
+                <!-- Ribbon disponibilidad -->
+                <widget name="web_ribbon"
+                        title="DISPONIBLE"
+                        bg_color="bg-success"
+                        invisible="not is_available"/>
+
+                <sheet>
+                    <!-- Stat buttons (display only) -->
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-code" type="object" name="action_open_projects">
+                            <field name="project_count" widget="statinfo" string="PROYECTOS"/>
+                        </button>
+                        <div class="oe_stat_button" style="cursor:default">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="odoo_version"/>
+                                </span>
+                                <span class="o_stat_text">VERSIÓN</span>
+                            </div>
+                        </div>
+                        <div class="oe_stat_button" style="cursor:default">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="ia_ready_pct"/>%
+                                </span>
+                                <span class="o_stat_text">IA READY</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Foto + datos principales -->
+                    <div class="oe_title d-flex">
+                        <div class="me-3">
+                            <field name="photo"
+                                   widget="image"
+                                   class="oe_avatar"
+                                   options="{'preview_image': 'photo'}"/>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h1>
+                                <field name="name" placeholder="Nombre completo"/>
+                            </h1>
+                            <h4 class="text-muted">
+                                <field name="job_title" placeholder="Título profesional"/>
+                            </h4>
+                            <field name="skill_tag_ids" widget="many2many_tags"
+                                   options="{'color_field': 'color'}"
+                                   placeholder="Tecnologías..."/>
+                        </div>
+                    </div>
+
+                    <!-- Datos de contacto -->
+                    <group>
+                        <group>
+                            <field name="email" widget="email"/>
+                            <field name="location"/>
+                        </group>
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="category"/>
+                        </group>
+                    </group>
+
+                    <!-- Tabs -->
+                    <notebook>
+                        <page string="Información General" name="info_general">
+                            <!-- Perfil profesional -->
+                            <group string="Perfil Profesional">
+                                <field name="profile_bio" widget="html" nolabel="1"/>
+                            </group>
+
+                            <div class="row mt-3">
+                                <!-- Hard Skills -->
+                                <div class="col-6">
+                                    <div class="fw-bold text-uppercase text-muted small mb-2">Hard Skills</div>
+                                    <field name="hard_skill_ids" nolabel="1">
+                                        <list editable="bottom">
+                                            <field name="name" string="Habilidad"/>
+                                            <field name="checked" string="✓" widget="boolean_toggle"/>
+                                        </list>
+                                    </field>
+                                </div>
+                                <!-- Ecosistema -->
+                                <div class="col-6">
+                                    <div class="fw-bold text-uppercase text-muted small mb-2">Ecosistema</div>
+                                    <field name="ecosystem_skill_ids" nolabel="1">
+                                        <list editable="bottom">
+                                            <field name="name" string="Tecnología"/>
+                                            <field name="checked" string="✓" widget="boolean_toggle"/>
+                                        </list>
+                                    </field>
+                                </div>
+                            </div>
+                        </page>
+
+                        <page string="Módulos Desarrollados" name="modulos">
+                            <!-- Experiencia -->
+                            <group string="Experiencia Laboral">
+                                <field name="experience_ids" nolabel="1">
+                                    <list editable="bottom">
+                                        <field name="position"/>
+                                        <field name="company"/>
+                                        <field name="location"/>
+                                        <field name="date_start"/>
+                                        <field name="date_end"/>
+                                        <field name="is_current" string="Actual"/>
+                                    </list>
+                                </field>
+                            </group>
+                            <!-- Proyectos -->
+                            <group string="Proyectos">
+                                <field name="project_ids" nolabel="1">
+                                    <list editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="name"/>
+                                        <field name="summary"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+
+                        <page string="Configuración Técnica" name="config">
+                            <group string="Redes Sociales">
+                                <field name="linkedin" string="LinkedIn (usuario)"/>
+                                <field name="github" string="GitHub (usuario)"/>
+                                <field name="is_available"/>
+                            </group>
+                            <!-- Cursos -->
+                            <group string="Cursos y Certificaciones">
+                                <field name="course_ids" nolabel="1">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="institution"/>
+                                        <field name="year"/>
+                                    </list>
+                                </field>
+                            </group>
+                            <!-- Educación -->
+                            <group string="Educación">
+                                <field name="education_ids" nolabel="1">
+                                    <list editable="bottom">
+                                        <field name="institution"/>
+                                        <field name="degree"/>
+                                        <field name="area"/>
+                                        <field name="date_start"/>
+                                        <field name="date_end"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- LIST VIEW                                                     -->
+    <!-- ============================================================ -->
+    <record id="portfolio_developer_list_view" model="ir.ui.view">
+        <field name="name">portfolio.developer.list</field>
+        <field name="model">portfolio.developer</field>
+        <field name="arch" type="xml">
+            <list string="Desarrolladores">
+                <field name="photo" widget="image" class="oe_avatar" optional="show"/>
+                <field name="name"/>
+                <field name="job_title"/>
+                <field name="skill_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="category"/>
+                <field name="location"/>
+                <field name="is_available" string="Disponible" widget="boolean_toggle"/>
+                <field name="project_count" string="Proyectos"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- SEARCH VIEW                                                   -->
+    <!-- ============================================================ -->
+    <record id="portfolio_developer_search_view" model="ir.ui.view">
+        <field name="name">portfolio.developer.search</field>
+        <field name="model">portfolio.developer</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Desarrolladores">
+                <field name="name"/>
+                <field name="job_title"/>
+                <field name="skill_tag_ids"/>
+                <filter string="Disponibles" name="available" domain="[('is_available', '=', True)]"/>
+                <separator/>
+                <filter string="Junior" name="junior" domain="[('category', '=', 'junior')]"/>
+                <filter string="Mid" name="mid" domain="[('category', '=', 'mid')]"/>
+                <filter string="Senior" name="senior" domain="[('category', '=', 'senior')]"/>
+                <group>
+                    <filter string="Categoría" name="group_category" context="{'group_by': 'category'}"/>
+                    <filter string="Disponibilidad" name="group_available" context="{'group_by': 'is_available'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- ACTION                                                        -->
+    <!-- ============================================================ -->
+    <record id="portfolio_developer_action" model="ir.actions.act_window">
+        <field name="name">Desarrolladores</field>
+        <field name="res_model">portfolio.developer</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="portfolio_developer_search_view"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Crea tu primer portafolio de desarrollador!
+            </p>
+            <p>
+                Gestiona tu perfil profesional, habilidades, proyectos y experiencia.
+            </p>
+        </field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- MENUS                                                         -->
+    <!-- ============================================================ -->
+    <menuitem id="portfolio_menu_root"
+              name="Portafolio"
+              sequence="90"/>
+
+    <menuitem id="portfolio_menu_developers"
+              name="Desarrolladores"
+              parent="portfolio_menu_root"
+              action="portfolio_developer_action"
+              sequence="10"/>
+
+</odoo>
