@@ -18,12 +18,16 @@
         'security/ir.model.access.csv',
         'views/portfolio_developer_views.xml',
         'views/portfolio_website_templates.xml',
+        'views/portfolio_backend_template.xml',
+        'views/portfolio_quiz_views.xml',
+        'views/portfolio_quiz_template.xml',
         'data/portfolio_demo_data.xml',
     ],
     'assets': {
         'web.assets_frontend': [
             'portafolio_web/static/src/css/portfolio_website.css',
             'portafolio_web/static/src/js/portfolio_website.js',
+            'portafolio_web/static/src/css/portfolio_backend.css',
         ],
     },
     'application': True,

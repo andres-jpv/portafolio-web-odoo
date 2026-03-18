@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- LIST VIEW -->
+    <record id="portfolio_quiz_result_list_view" model="ir.ui.view">
+        <field name="name">portfolio.quiz.result.list</field>
+        <field name="model">portfolio.quiz.result</field>
+        <field name="arch" type="xml">
+            <list string="Resultados Test Técnico" default_order="date desc">
+                <field name="date" string="Fecha"/>
+                <field name="name" string="Nombre"/>
+                <field name="email" string="Email"/>
+                <field name="company" string="Empresa"/>
+                <field name="score" string="Puntaje" widget="integer"/>
+                <field name="q1" string="P1" optional="show"/>
+                <field name="q2" string="P2" optional="show"/>
+                <field name="q3" string="P3" optional="show"/>
+                <field name="q4" string="P4" optional="show"/>
+                <field name="q5" string="P5" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="portfolio_quiz_result_form_view" model="ir.ui.view">
+        <field name="name">portfolio.quiz.result.form</field>
+        <field name="model">portfolio.quiz.result</field>
+        <field name="arch" type="xml">
+            <form string="Resultado Test Técnico">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="company"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="score" string="Puntaje (sobre 5)"/>
+                            <field name="q1"/>
+                            <field name="q2"/>
+                            <field name="q3"/>
+                            <field name="q4"/>
+                            <field name="q5"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="portfolio_quiz_result_action" model="ir.actions.act_window">
+        <field name="name">Test Técnico</field>
+        <field name="res_model">portfolio.quiz.result</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Aún no hay resultados del test técnico.
+            </p>
+            <p>
+                Comparte el enlace <strong>/portafolioweb/test</strong> con reclutadores.
+            </p>
+        </field>
+    </record>
+
+    <!-- MENU -->
+    <menuitem id="portfolio_menu_quiz"
+              name="Test Técnico"
+              parent="portfolio_menu_root"
+              action="portfolio_quiz_result_action"
+              sequence="20"/>
+
+</odoo>

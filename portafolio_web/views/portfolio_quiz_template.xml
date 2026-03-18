@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ====================================================== -->
+    <!-- QUIZ PAGE                                               -->
+    <!-- ====================================================== -->
+    <template id="quiz_page" name="Test Técnico Odoo">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+
+            <style>
+                body { margin: 0; background: #f8f9fa; font-family: 'Roboto', sans-serif; }
+                .qz-root { max-width: 680px; margin: 48px auto; padding: 0 16px 64px; }
+                .qz-header { text-align: center; margin-bottom: 32px; }
+                .qz-header h1 { font-size: 24px; font-weight: 700; color: #714b67; margin: 0 0 6px; }
+                .qz-header p { color: #6c757d; font-size: 14px; margin: 0; }
+                .qz-card { background: #fff; border-radius: 8px; box-shadow: 0 1px 6px rgba(0,0,0,.1); padding: 24px; margin-bottom: 16px; }
+                .qz-card h3 { font-size: 15px; font-weight: 600; color: #212529; margin: 0 0 16px; }
+                .qz-option { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 6px; border: 1.5px solid #dee2e6; margin-bottom: 8px; cursor: pointer; transition: border-color .15s, background .15s; }
+                .qz-option:hover { border-color: #714b67; background: #f5f0f4; }
+                .qz-option input[type=radio] { accent-color: #714b67; width: 16px; height: 16px; margin: 0; }
+                .qz-option label { font-size: 13px; color: #495057; cursor: pointer; margin: 0; }
+                .qz-info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+                .qz-info input { width: 100%; padding: 8px 10px; border: 1.5px solid #dee2e6; border-radius: 6px; font-size: 13px; outline: none; box-sizing: border-box; }
+                .qz-info input:focus { border-color: #714b67; }
+                .qz-submit { width: 100%; padding: 12px; background: #714b67; color: #fff; border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+                .qz-submit:hover { background: #5c3a54; }
+                .qz-badge { display: inline-block; background: #714b67; color: #fff; border-radius: 20px; font-size: 11px; font-weight: 700; padding: 2px 10px; margin-bottom: 12px; }
+            </style>
+
+            <div class="qz-root">
+                <div class="qz-header">
+                    <h1>&#127919; Test Técnico Odoo</h1>
+                    <p>5 preguntas para desarrolladores Junior · Completa con tu email y recibe tu puntaje</p>
+                </div>
+
+                <form action="/portafolioweb/test" method="POST">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                    <!-- Info reclutador -->
+                    <div class="qz-card">
+                        <h3>&#128100; Tus datos (para enviarte el resultado)</h3>
+                        <div class="qz-info">
+                            <input type="text" name="nombre" placeholder="Tu nombre *" required="required"/>
+                            <input type="text" name="company" placeholder="Empresa / Agencia"/>
+                        </div>
+                        <input type="email" name="email" placeholder="Tu email" style="width:100%;padding:8px 10px;border:1.5px solid #dee2e6;border-radius:6px;font-size:13px;outline:none;box-sizing:border-box;"/>
+                    </div>
+
+                    <!-- P1 -->
+                    <div class="qz-card">
+                        <div class="qz-badge">Pregunta 1 / 5</div>
+                        <h3>¿Qué archivo define los modelos de datos en un módulo Odoo?</h3>
+                        <div class="qz-option"><input type="radio" name="q1" id="q1a" value="a" required="required"/><label for="q1a">models.py</label></div>
+                        <div class="qz-option"><input type="radio" name="q1" id="q1b" value="b"/><label for="q1b">__manifest__.py</label></div>
+                        <div class="qz-option"><input type="radio" name="q1" id="q1c" value="c"/><label for="q1c">views.xml</label></div>
+                        <div class="qz-option"><input type="radio" name="q1" id="q1d" value="d"/><label for="q1d">controllers.py</label></div>
+                    </div>
+
+                    <!-- P2 -->
+                    <div class="qz-card">
+                        <div class="qz-badge">Pregunta 2 / 5</div>
+                        <h3>¿Cuál es el decorador que se usa para definir campos computados en Odoo?</h3>
+                        <div class="qz-option"><input type="radio" name="q2" id="q2a" value="a" required="required"/><label for="q2a">@api.depends</label></div>
+                        <div class="qz-option"><input type="radio" name="q2" id="q2b" value="b"/><label for="q2b">@api.model</label></div>
+                        <div class="qz-option"><input type="radio" name="q2" id="q2c" value="c"/><label for="q2c">@api.onchange</label></div>
+                        <div class="qz-option"><input type="radio" name="q2" id="q2d" value="d"/><label for="q2d">@http.route</label></div>
+                    </div>
+
+                    <!-- P3 -->
+                    <div class="qz-card">
+                        <div class="qz-badge">Pregunta 3 / 5</div>
+                        <h3>¿Qué tipo de campo se usa para relacionar muchos registros con muchos en Odoo?</h3>
+                        <div class="qz-option"><input type="radio" name="q3" id="q3a" value="a" required="required"/><label for="q3a">Many2one</label></div>
+                        <div class="qz-option"><input type="radio" name="q3" id="q3b" value="b"/><label for="q3b">One2many</label></div>
+                        <div class="qz-option"><input type="radio" name="q3" id="q3c" value="c"/><label for="q3c">Many2many</label></div>
+                        <div class="qz-option"><input type="radio" name="q3" id="q3d" value="d"/><label for="q3d">Boolean</label></div>
+                    </div>
+
+                    <!-- P4 -->
+                    <div class="qz-card">
+                        <div class="qz-badge">Pregunta 4 / 5</div>
+                        <h3>¿En qué archivo se declaran los permisos de acceso a los modelos de Odoo?</h3>
+                        <div class="qz-option"><input type="radio" name="q4" id="q4a" value="a" required="required"/><label for="q4a">ir.model.access.csv</label></div>
+                        <div class="qz-option"><input type="radio" name="q4" id="q4b" value="b"/><label for="q4b">__manifest__.py</label></div>
+                        <div class="qz-option"><input type="radio" name="q4" id="q4c" value="c"/><label for="q4c">security.xml</label></div>
+                        <div class="qz-option"><input type="radio" name="q4" id="q4d" value="d"/><label for="q4d">access.json</label></div>
+                    </div>
+
+                    <!-- P5 -->
+                    <div class="qz-card">
+                        <div class="qz-badge">Pregunta 5 / 5</div>
+                        <h3>¿Qué método del ORM de Odoo se utiliza para buscar registros en la base de datos?</h3>
+                        <div class="qz-option"><input type="radio" name="q5" id="q5a" value="a" required="required"/><label for="q5a">find()</label></div>
+                        <div class="qz-option"><input type="radio" name="q5" id="q5b" value="b"/><label for="q5b">search()</label></div>
+                        <div class="qz-option"><input type="radio" name="q5" id="q5c" value="c"/><label for="q5c">get()</label></div>
+                        <div class="qz-option"><input type="radio" name="q5" id="q5d" value="d"/><label for="q5d">query()</label></div>
+                    </div>
+
+                    <button type="submit" class="qz-submit">&#9989; Enviar respuestas</button>
+                </form>
+            </div>
+
+            <script>
+                document.querySelectorAll('.qz-option').forEach(function(opt) {
+                    opt.addEventListener('click', function() {
+                        var radio = opt.querySelector('input[type=radio]');
+                        if (radio) radio.checked = true;
+                    });
+                });
+            </script>
+        </t>
+    </template>
+
+    <!-- ====================================================== -->
+    <!-- RESULT PAGE                                             -->
+    <!-- ====================================================== -->
+    <template id="quiz_result_page" name="Resultado Test Técnico">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+
+            <style>
+                body { margin: 0; background: #f8f9fa; font-family: 'Roboto', sans-serif; }
+                .qr-root { max-width: 480px; margin: 80px auto; padding: 0 16px; text-align: center; }
+                .qr-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.12); padding: 40px 32px; }
+                .qr-score { font-size: 64px; font-weight: 800; color: #714b67; line-height: 1; }
+                .qr-total { font-size: 18px; color: #6c757d; margin-bottom: 12px; }
+                .qr-msg { font-size: 16px; color: #212529; font-weight: 500; margin-bottom: 24px; }
+                .qr-back { display: inline-block; padding: 10px 24px; background: #714b67; color: #fff; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 600; }
+                .qr-back:hover { background: #5c3a54; color: #fff; }
+                .qr-stars { font-size: 28px; margin-bottom: 8px; }
+            </style>
+
+            <div class="qr-root">
+                <div class="qr-card">
+                    <div class="qr-stars">
+                        <t t-if="score == 5">&#11088;&#11088;&#11088;&#11088;&#11088;</t>
+                        <t t-elif="score >= 4">&#11088;&#11088;&#11088;&#11088;&#10025;</t>
+                        <t t-elif="score >= 3">&#11088;&#11088;&#11088;&#10025;&#10025;</t>
+                        <t t-elif="score >= 2">&#11088;&#11088;&#10025;&#10025;&#10025;</t>
+                        <t t-else="">&#11088;&#10025;&#10025;&#10025;&#10025;</t>
+                    </div>
+                    <div class="qr-score" t-esc="score"/>
+                    <div class="qr-total">de <t t-esc="total"/> preguntas</div>
+                    <div class="qr-msg">
+                        <t t-esc="nombre"/>,
+                        <t t-if="score == 5"> ¡perfecto! Conoces Odoo muy bien &#127881;</t>
+                        <t t-elif="score >= 4"> ¡excelente resultado! &#128293;</t>
+                        <t t-elif="score >= 3"> buen intento, vas por buen camino &#128170;</t>
+                        <t t-else=""> sigue estudiando, ¡tú puedes! &#128218;</t>
+                    </div>
+                    <a href="/portafolioweb" class="qr-back">&#8592; Volver al portafolio</a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

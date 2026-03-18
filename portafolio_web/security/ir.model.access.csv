@@ -13,3 +13,5 @@ access_portfolio_experience_public,portfolio.experience.public,model_portfolio_e
 access_portfolio_project_public,portfolio.project.public,model_portfolio_project,base.group_public,1,0,0,0
 access_portfolio_course_public,portfolio.course.public,model_portfolio_course,base.group_public,1,0,0,0
 access_portfolio_education_public,portfolio.education.public,model_portfolio_education,base.group_public,1,0,0,0
+access_portfolio_quiz_result_user,portfolio.quiz.result.user,model_portfolio_quiz_result,base.group_user,1,1,1,1
+access_portfolio_quiz_result_public,portfolio.quiz.result.public,model_portfolio_quiz_result,base.group_public,0,0,1,0

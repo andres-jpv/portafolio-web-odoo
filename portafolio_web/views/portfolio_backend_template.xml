@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portafolio_backend_page" name="Portafolio Web — Vista Backend">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="additional_title">Portafolio Backend — <t t-esc="developer.name"/></t>
+
+            <div class="ob-root">
+
+                <!-- ====== NAVBAR ====== -->
+                <nav class="ob-navbar">
+                    <!-- Apps grid -->
+                    <div class="ob-navbar__apps" title="Aplicaciones">&#8942;&#8942;&#8942;</div>
+
+                    <!-- Brand -->
+                    <span class="ob-navbar__brand">Portafolio</span>
+                    <div class="ob-navbar__sep"/>
+
+                    <!-- Menu items (simulado) -->
+                    <div class="ob-navbar__menu">
+                        <span class="ob-navbar__menu-item active">Desarrolladores</span>
+                    </div>
+
+                    <!-- Derecha: iconos + usuario -->
+                    <div class="ob-navbar__right">
+                        <div class="ob-navbar__icon" title="Buscar">&#128269;</div>
+                        <div class="ob-navbar__icon" title="Actividades">&#128336;</div>
+                        <div class="ob-navbar__icon" title="Mensajes">&#128172;</div>
+                        <div class="ob-navbar__user">
+                            <div class="ob-navbar__avatar">
+                                <t t-esc="developer.name[:2].upper() if developer.name else 'JP'"/>
+                            </div>
+                            <span class="ob-navbar__username" t-esc="developer.name"/>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- ====== CONTROL PANEL ====== -->
+                <div class="ob-control-panel">
+                    <div class="ob-control-panel__breadcrumb">
+                        <a href="/portafolioweb">Desarrolladores</a>
+                        <span class="sep">&#8250;</span>
+                        <span class="current" t-esc="developer.name"/>
+                    </div>
+                    <div class="ob-control-panel__actions">
+                        <t t-if="developer.linkedin">
+                            <a t-attf-href="https://linkedin.com/in/#{developer.linkedin}"
+                               target="_blank" rel="noopener"
+                               class="ob-btn ob-btn-secondary">
+                                &#128100; LinkedIn
+                            </a>
+                        </t>
+                        <t t-if="developer.github">
+                            <a t-attf-href="https://github.com/#{developer.github}"
+                               target="_blank" rel="noopener"
+                               class="ob-btn ob-btn-secondary">
+                                &#9728; GitHub
+                            </a>
+                        </t>
+                        <a href="/portafolio" class="ob-btn ob-btn-secondary">
+                            &#8635; Ver v1
+                        </a>
+                        <a href="/portafolio_web/static/files/cv.pdf"
+                           download="CV_Jordan_Pincay.pdf"
+                           target="_blank"
+                           class="ob-btn ob-btn-secondary">
+                            &#128196; Descargar CV
+                        </a>
+                        <a href="/portafolioweb/test"
+                           target="_blank"
+                           class="ob-btn ob-btn-secondary">
+                            &#127919; Test Técnico
+                        </a>
+                        <a href="https://mail.google.com/mail/?view=cm&amp;to=j.pincayvinces@gmail.com"
+                           target="_blank" rel="noopener"
+                           class="ob-btn ob-btn-primary">
+                            &#9993; Contactar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ====== VIEW CONTAINER ====== -->
+                <div class="ob-view-container">
+
+                    <!-- ── FORM AREA ── -->
+                    <div class="ob-form-area">
+                        <div class="ob-sheet">
+
+                            <!-- Ribbon DISPONIBLE -->
+                            <t t-if="developer.is_available">
+                                <div class="ob-ribbon">DISPONIBLE</div>
+                            </t>
+
+                            <!-- Stat buttons -->
+                            <div class="ob-button-box">
+                                <div class="ob-stat-btn">
+                                    <span class="ob-stat-btn__value" t-esc="developer.project_count"/>
+                                    <span class="ob-stat-btn__label">Proyectos</span>
+                                </div>
+                                <div class="ob-stat-btn">
+                                    <span class="ob-stat-btn__value">v19</span>
+                                    <span class="ob-stat-btn__label">Versión</span>
+                                </div>
+                                <div class="ob-stat-btn">
+                                    <span class="ob-stat-btn__value">100%</span>
+                                    <span class="ob-stat-btn__label">IA Ready</span>
+                                </div>
+                            </div>
+
+                            <!-- Header: foto + nombre -->
+                            <div class="ob-header">
+                                <t t-if="developer.photo">
+                                    <img t-attf-src="data:image/png;base64,#{developer.photo}"
+                                         class="ob-avatar"
+                                         t-att-alt="developer.name"/>
+                                </t>
+                                <t t-else="">
+                                    <div class="ob-avatar-placeholder">&#128100;</div>
+                                </t>
+
+                                <div class="ob-title">
+                                    <h1 t-esc="developer.name"/>
+                                    <h4 t-esc="developer.job_title"/>
+                                    <div class="ob-tags">
+                                        <t t-foreach="developer.skill_tag_ids" t-as="tag">
+                                            <span class="ob-tag" t-esc="tag.name"/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Grupo de campos (2 columnas) -->
+                            <div class="ob-group">
+                                <div class="ob-group-col">
+                                    <t t-if="developer.email">
+                                        <div class="ob-field-row">
+                                            <span class="ob-field-label">Correo-e</span>
+                                            <span class="ob-field-value">
+                                                <a t-attf-href="mailto:#{developer.email}"
+                                                   t-esc="developer.email"/>
+                                            </span>
+                                        </div>
+                                    </t>
+                                    <t t-if="developer.location">
+                                        <div class="ob-field-row">
+                                            <span class="ob-field-label">Ubicación</span>
+                                            <span class="ob-field-value" t-esc="developer.location"/>
+                                        </div>
+                                    </t>
+                                </div>
+                                <div class="ob-group-col">
+                                    <t t-if="developer.phone">
+                                        <div class="ob-field-row">
+                                            <span class="ob-field-label">Teléfono</span>
+                                            <span class="ob-field-value">
+                                                <a t-attf-href="tel:#{developer.phone}"
+                                                   t-esc="developer.phone"/>
+                                            </span>
+                                        </div>
+                                    </t>
+                                    <t t-if="developer.category">
+                                        <div class="ob-field-row">
+                                            <span class="ob-field-label">Categoría</span>
+                                            <span class="ob-field-value">
+                                                <span class="ob-badge-category">
+                                                    Developer / <t t-esc="developer.category.capitalize()"/>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+
+                            <!-- ====== NOTEBOOK ====== -->
+                            <div class="ob-notebook">
+                                <div class="ob-notebook__tabs">
+                                    <button class="ob-tab-btn active" data-ob-tab="info">
+                                        Información General
+                                    </button>
+                                    <button class="ob-tab-btn" data-ob-tab="modulos">
+                                        Módulos Desarrollados
+                                    </button>
+                                    <button class="ob-tab-btn" data-ob-tab="config">
+                                        Configuración Técnica
+                                    </button>
+                                </div>
+
+                                <!-- TAB 1: Información General -->
+                                <div class="ob-tab-panel active" id="ob-panel-info">
+
+                                    <!-- Perfil Profesional -->
+                                    <t t-if="developer.profile_bio">
+                                        <div class="ob-section-title">Perfil Profesional</div>
+                                        <div class="ob-profile-bio" t-raw="developer.profile_bio"/>
+                                    </t>
+
+                                    <!-- Habilidades: Hard Skills + Ecosistema -->
+                                    <t t-if="developer.hard_skill_ids or developer.ecosystem_skill_ids">
+                                        <div class="ob-skills-row">
+                                            <!-- Hard Skills -->
+                                            <t t-if="developer.hard_skill_ids">
+                                                <div>
+                                                    <div class="ob-section-title">Hard Skills</div>
+                                                    <table class="ob-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Habilidad</th>
+                                                                <th style="width:50px;text-align:center;">&#10003;</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <t t-foreach="developer.hard_skill_ids" t-as="skill">
+                                                                <tr>
+                                                                    <td t-esc="skill.name"/>
+                                                                    <td style="text-align:center;">
+                                                                        <t t-if="skill.checked">
+                                                                            <span class="ob-check-yes">&#10003;</span>
+                                                                        </t>
+                                                                    </td>
+                                                                </tr>
+                                                            </t>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </t>
+                                            <!-- Ecosistema -->
+                                            <t t-if="developer.ecosystem_skill_ids">
+                                                <div>
+                                                    <div class="ob-section-title">Ecosistema</div>
+                                                    <table class="ob-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tecnología</th>
+                                                                <th style="width:50px;text-align:center;">&#10003;</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <t t-foreach="developer.ecosystem_skill_ids" t-as="skill">
+                                                                <tr>
+                                                                    <td t-esc="skill.name"/>
+                                                                    <td style="text-align:center;">
+                                                                        <t t-if="skill.checked">
+                                                                            <span class="ob-check-yes">&#10003;</span>
+                                                                        </t>
+                                                                    </td>
+                                                                </tr>
+                                                            </t>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                </div>
+
+                                <!-- TAB 2: Módulos Desarrollados -->
+                                <div class="ob-tab-panel" id="ob-panel-modulos">
+
+                                    <!-- Experiencia Laboral -->
+                                    <t t-if="developer.experience_ids">
+                                        <div class="ob-section-title">Experiencia Laboral</div>
+                                        <table class="ob-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Puesto</th>
+                                                    <th>Empresa</th>
+                                                    <th>Ubicación</th>
+                                                    <th>Fecha inicio</th>
+                                                    <th>Fecha fin</th>
+                                                    <th>Actual</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="developer.experience_ids" t-as="exp">
+                                                    <tr>
+                                                        <td t-esc="exp.position"/>
+                                                        <td t-esc="exp.company"/>
+                                                        <td class="muted" t-esc="exp.location"/>
+                                                        <td class="muted" t-esc="exp.date_start"/>
+                                                        <td class="muted">
+                                                            <t t-if="not exp.is_current" t-esc="exp.date_end"/>
+                                                        </td>
+                                                        <td style="text-align:center;">
+                                                            <t t-if="exp.is_current">
+                                                                <span class="ob-current-badge">Actual</span>
+                                                            </t>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
+
+                                    <!-- Proyectos -->
+                                    <t t-if="developer.project_ids">
+                                        <div class="ob-section-title">Proyectos</div>
+                                        <table class="ob-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre del proyecto</th>
+                                                    <th>Resumen</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="developer.project_ids" t-as="proj">
+                                                    <tr>
+                                                        <td t-esc="proj.name"/>
+                                                        <td class="muted" t-esc="proj.summary"/>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
+                                </div>
+
+                                <!-- TAB 3: Configuración Técnica -->
+                                <div class="ob-tab-panel" id="ob-panel-config">
+
+                                    <!-- Redes Sociales -->
+                                    <div class="ob-section-title">Redes Sociales</div>
+                                    <t t-if="developer.linkedin">
+                                        <div class="ob-social-link">
+                                            <span class="ob-social-link__label">LinkedIn (usuario)</span>
+                                            <span class="ob-social-link__value">
+                                                <a t-attf-href="https://linkedin.com/in/#{developer.linkedin}"
+                                                   target="_blank" rel="noopener"
+                                                   t-esc="developer.linkedin"/>
+                                            </span>
+                                        </div>
+                                    </t>
+                                    <t t-if="developer.github">
+                                        <div class="ob-social-link">
+                                            <span class="ob-social-link__label">GitHub (usuario)</span>
+                                            <span class="ob-social-link__value">
+                                                <a t-attf-href="https://github.com/#{developer.github}"
+                                                   target="_blank" rel="noopener"
+                                                   t-esc="developer.github"/>
+                                            </span>
+                                        </div>
+                                    </t>
+
+                                    <!-- Cursos y Certificaciones -->
+                                    <t t-if="developer.course_ids">
+                                        <div class="ob-section-title">Cursos y Certificaciones</div>
+                                        <table class="ob-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre del curso</th>
+                                                    <th>Institución / Plataforma</th>
+                                                    <th style="width:70px;">Año</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="developer.course_ids" t-as="course">
+                                                    <tr>
+                                                        <td t-esc="course.name"/>
+                                                        <td class="muted" t-esc="course.institution"/>
+                                                        <td class="muted" t-esc="course.year"/>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
+
+                                    <!-- Educación -->
+                                    <t t-if="developer.education_ids">
+                                        <div class="ob-section-title">Educación</div>
+                                        <table class="ob-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Institución</th>
+                                                    <th>Título / Grado</th>
+                                                    <th>Área / Especialidad</th>
+                                                    <th>Fecha inicio</th>
+                                                    <th>Fecha fin</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="developer.education_ids" t-as="edu">
+                                                    <tr>
+                                                        <td t-esc="edu.institution"/>
+                                                        <td class="muted" t-esc="edu.degree"/>
+                                                        <td class="muted" t-esc="edu.area"/>
+                                                        <td class="muted" t-esc="edu.date_start"/>
+                                                        <td class="muted" t-esc="edu.date_end"/>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
+                                </div>
+
+                            </div><!-- /ob-notebook -->
+
+                        </div><!-- /ob-sheet -->
+                    </div><!-- /ob-form-area -->
+
+                    <!-- ── CHATTER ── -->
+                    <div class="ob-chatter">
+                        <div class="ob-chatter__header">
+                            <div class="ob-chatter__tab active" id="ob-ctab-mensajes">Enviar mensaje</div>
+                            <div class="ob-chatter__tab" id="ob-ctab-nota">Poner nota</div>
+                        </div>
+
+                        <!-- Panel: Mensajes -->
+                        <div class="ob-chatter__body" id="ob-cpanel-mensajes">
+                            <!-- Seguidores simulado -->
+                            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6c757d;margin-bottom:10px;">
+                                Seguidores
+                            </div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+                                <div class="ob-msg__avatar">
+                                    <t t-esc="developer.name[:2].upper() if developer.name else 'JP'"/>
+                                </div>
+                                <span style="font-size:13px;font-weight:500;" t-esc="developer.name"/>
+                            </div>
+
+                            <!-- Mensajes del chatter -->
+                            <t t-if="messages">
+                                <t t-foreach="messages" t-as="msg">
+                                    <div class="ob-msg">
+                                        <div class="ob-msg__avatar"
+                                             t-attf-class="ob-msg__avatar#{' star' if msg.subtype_id and 'starred' in (msg.subtype_id.name or '').lower() else ''}">
+                                            <t t-if="msg.author_id">
+                                                <t t-esc="msg.author_id.name[:2].upper()"/>
+                                            </t>
+                                            <t t-else="">&#128100;</t>
+                                        </div>
+                                        <div class="ob-msg__content">
+                                            <div class="ob-msg__meta">
+                                                <span class="ob-msg__author">
+                                                    <t t-if="msg.author_id" t-esc="msg.author_id.name"/>
+                                                    <t t-else="">Sistema</t>
+                                                </span>
+                                                <span t-esc="msg.date.strftime('%d %b, %I:%M %p') if msg.date else ''"/>
+                                            </div>
+                                            <t t-if="msg.subject">
+                                                <div class="ob-msg__subject" t-esc="msg.subject"/>
+                                            </t>
+                                            <div class="ob-msg__body">
+                                                <t t-if="msg.body">
+                                                    <t t-raw="msg.body[:200]"/>
+                                                </t>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-else="">
+                                <div class="ob-chatter__empty">Sin mensajes aún</div>
+                            </t>
+                        </div>
+
+                        <!-- Panel: Poner nota -->
+                        <div class="ob-chatter__body" id="ob-cpanel-nota" style="display:none;">
+                            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6c757d;margin-bottom:12px;">
+                                Dejar una nota
+                            </div>
+                            <form id="ob-nota-form">
+                                <input type="hidden" id="ob-nota-dev-id" t-att-value="developer.id"/>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:11px;font-weight:700;color:#6c757d;display:block;margin-bottom:4px;">Tu nombre</label>
+                                    <input type="text" id="ob-nota-nombre"
+                                           placeholder="Nombre..."
+                                           style="width:100%;padding:5px 8px;border:1px solid #dee2e6;border-radius:4px;font-size:13px;outline:none;"/>
+                                </div>
+                                <div style="margin-bottom:10px;">
+                                    <label style="font-size:11px;font-weight:700;color:#6c757d;display:block;margin-bottom:4px;">Nota</label>
+                                    <textarea id="ob-nota-text" rows="5"
+                                              placeholder="Escribe tu nota o comentario..."
+                                              style="width:100%;padding:5px 8px;border:1px solid #dee2e6;border-radius:4px;font-size:13px;resize:vertical;outline:none;"></textarea>
+                                </div>
+                                <button type="submit" id="ob-nota-submit"
+                                        style="width:100%;padding:6px 12px;background:#714b67;color:#fff;border:none;border-radius:4px;font-size:13px;cursor:pointer;font-weight:500;">
+                                    &#128221; Agregar nota
+                                </button>
+                                <div id="ob-nota-status"
+                                     style="margin-top:8px;font-size:12px;text-align:center;display:none;padding:6px;border-radius:4px;"/>
+                            </form>
+                        </div>
+
+                    </div><!-- /ob-chatter -->
+
+                </div><!-- /ob-view-container -->
+
+            </div><!-- /ob-root -->
+
+            <!-- ====== JS: Tab switcher + Chatter ====== -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Notebook tabs
+                    var tabs = document.querySelectorAll('.ob-tab-btn');
+                    var panels = document.querySelectorAll('.ob-tab-panel');
+                    tabs.forEach(function (btn) {
+                        btn.addEventListener('click', function () {
+                            var target = btn.getAttribute('data-ob-tab');
+                            tabs.forEach(function (t) { t.classList.remove('active'); });
+                            panels.forEach(function (p) { p.classList.remove('active'); });
+                            btn.classList.add('active');
+                            var panel = document.getElementById('ob-panel-' + target);
+                            if (panel) { panel.classList.add('active'); }
+                        });
+                    });
+
+                    // Chatter tabs
+                    var ctabMensajes = document.getElementById('ob-ctab-mensajes');
+                    var ctabNota = document.getElementById('ob-ctab-nota');
+                    var cpanelMensajes = document.getElementById('ob-cpanel-mensajes');
+                    var cpanelNota = document.getElementById('ob-cpanel-nota');
+
+                    ctabMensajes.addEventListener('click', function () {
+                        cpanelNota.style.display = 'none';
+                        cpanelMensajes.style.display = 'block';
+                        ctabNota.classList.remove('active');
+                        ctabMensajes.classList.add('active');
+                    });
+
+                    ctabNota.addEventListener('click', function () {
+                        cpanelMensajes.style.display = 'none';
+                        cpanelNota.style.display = 'block';
+                        ctabMensajes.classList.remove('active');
+                        ctabNota.classList.add('active');
+                    });
+
+                    // Nota form submit
+                    document.getElementById('ob-nota-form').addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        var devId = parseInt(document.getElementById('ob-nota-dev-id').value);
+                        var nombre = document.getElementById('ob-nota-nombre').value.trim();
+                        var nota = document.getElementById('ob-nota-text').value.trim();
+                        var status = document.getElementById('ob-nota-status');
+                        var btn = document.getElementById('ob-nota-submit');
+
+                        if (!nota) {
+                            status.style.display = 'block';
+                            status.style.background = '#fff3cd';
+                            status.style.color = '#856404';
+                            status.textContent = 'Por favor escribe una nota.';
+                            return;
+                        }
+
+                        btn.disabled = true;
+                        btn.textContent = 'Guardando...';
+
+                        fetch('/portafolioweb/nota', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                jsonrpc: '2.0',
+                                method: 'call',
+                                params: { developer_id: devId, nombre: nombre, nota: nota }
+                            })
+                        })
+                        .then(function (r) { return r.json(); })
+                        .then(function (data) {
+                            status.style.display = 'block';
+                            if (data.result &amp;&amp; data.result.success) {
+                                status.style.background = '#d4edda';
+                                status.style.color = '#155724';
+                                status.textContent = '¡Nota guardada correctamente!';
+                                document.getElementById('ob-nota-nombre').value = '';
+                                document.getElementById('ob-nota-text').value = '';
+                            } else {
+                                status.style.background = '#f8d7da';
+                                status.style.color = '#721c24';
+                                status.textContent = 'Error al guardar la nota.';
+                            }
+                            btn.disabled = false;
+                            btn.textContent = '📝 Agregar nota';
+                        })
+                        .catch(function () {
+                            status.style.display = 'block';
+                            status.style.background = '#f8d7da';
+                            status.style.color = '#721c24';
+                            status.textContent = 'Error de conexión.';
+                            btn.disabled = false;
+                            btn.textContent = '📝 Agregar nota';
+                        });
+                    });
+                });
+            </script>
+
+        </t>
+    </template>
+
+</odoo>
