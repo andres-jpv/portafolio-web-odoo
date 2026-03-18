@@ -21,6 +21,7 @@
         'views/portfolio_backend_template.xml',
         'views/portfolio_quiz_views.xml',
         'views/portfolio_quiz_template.xml',
+        'views/portfolio_cv_report.xml',
         'data/portfolio_demo_data.xml',
     ],
     'assets': {
@@ -28,6 +29,7 @@
             'portafolio_web/static/src/css/portfolio_website.css',
             'portafolio_web/static/src/js/portfolio_website.js',
             'portafolio_web/static/src/css/portfolio_backend.css',
+            'portafolio_web/static/src/js/portfolio_chatter.js',
         ],
     },
     'application': True,

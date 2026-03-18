@@ -15,11 +15,25 @@ class PortfolioWebController(http.Controller):
     @http.route('/portafolioweb', auth='public', website=True, sitemap=True)
     def portafolio_backend(self, **kwargs):
         developer = request.env['portfolio.developer'].sudo().search([], limit=1)
-        messages = developer.message_ids.sorted('date', reverse=True)[:5] if developer else []
         return request.render('portafolio_web.portafolio_backend_page', {
             'developer': developer,
-            'messages': messages,
         })
+
+    @http.route('/portafolioweb/cv', auth='public', website=True, sitemap=False)
+    def cv_pdf(self, **kwargs):
+        developer = request.env['portfolio.developer'].sudo().search([], limit=1)
+        if not developer:
+            return request.not_found()
+        pdf_content, _ = request.env['ir.actions.report'].sudo()._render_qweb_pdf(
+            'portafolio_web.report_cv_document',
+            [developer.id],
+        )
+        headers = [
+            ('Content-Type', 'application/pdf'),
+            ('Content-Disposition', 'attachment; filename="CV_Jordan_Pincay.pdf"'),
+            ('Content-Length', len(pdf_content)),
+        ]
+        return request.make_response(pdf_content, headers=headers)
 
     _QUIZ_ANSWERS = {'q1': 'a', 'q2': 'a', 'q3': 'c', 'q4': 'a', 'q5': 'b'}
 
@@ -43,16 +57,3 @@ class PortfolioWebController(http.Controller):
             'nombre': nombre or 'Visitante',
         })
 
-    @http.route('/portafolioweb/nota', type='json', auth='public', website=True, methods=['POST'], csrf=False)
-    def portafolio_nota(self, developer_id, nombre='', nota='', **kwargs):
-        developer = request.env['portfolio.developer'].sudo().browse(developer_id)
-        if not developer.exists():
-            return {'success': False, 'error': 'Desarrollador no encontrado'}
-        body = '<p><strong>%s:</strong><br/>%s</p>' % (nombre or 'Visitante', nota)
-        developer.sudo().message_post(
-            body=body,
-            message_type='comment',
-            subtype_xmlid='mail.mt_note',
-            author_id=request.env.ref('base.partner_root').id,
-        )
-        return {'success': True}

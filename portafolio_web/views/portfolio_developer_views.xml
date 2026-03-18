@@ -51,10 +51,12 @@
                         <group>
                             <field name="email" widget="email"/>
                             <field name="location"/>
+                            <field name="linkedin" string="LinkedIn"/>
                         </group>
                         <group>
                             <field name="phone" widget="phone"/>
                             <field name="category"/>
+                            <field name="github" string="GitHub"/>
                         </group>
                     </group>
 
@@ -116,10 +118,8 @@
                             </group>
                         </page>
 
-                        <page string="Configuración Técnica" name="config">
-                            <group string="Redes Sociales">
-                                <field name="linkedin" string="LinkedIn (usuario)"/>
-                                <field name="github" string="GitHub (usuario)"/>
+                        <page string="Formación y Certificaciones" name="config">
+                            <group string="Configuración">
                                 <field name="is_available"/>
                             </group>
                             <!-- Cursos -->

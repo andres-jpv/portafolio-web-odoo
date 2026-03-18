@@ -56,31 +56,105 @@
 }
 
 /* ============================================================
-   DARK/LIGHT TOGGLE BUTTON (flotante)
+   TOP BAR (nav switcher + theme toggle)
+   ============================================================ */
+.pf-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--pf-bg-header);
+    border-bottom: 1px solid var(--pf-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 20px;
+    gap: 12px;
+}
+
+.pf-topbar__switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pf-topbar__label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+}
+
+[data-pf-theme="light"] .pf-topbar__label {
+    color: var(--pf-text-muted);
+}
+
+.pf-topbar__nav-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+}
+
+.pf-topbar__nav-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    text-decoration: none;
+}
+
+.pf-topbar__nav-btn--active {
+    background: var(--pf-accent);
+    border-color: var(--pf-accent);
+    color: #fff;
+}
+
+[data-pf-theme="light"] .pf-topbar__nav-btn {
+    border-color: var(--pf-border);
+    color: var(--pf-text-muted);
+}
+
+[data-pf-theme="light"] .pf-topbar__nav-btn:hover {
+    background: var(--pf-accent-light);
+    color: var(--pf-accent);
+}
+
+[data-pf-theme="light"] .pf-topbar__nav-btn--active {
+    background: var(--pf-accent);
+    color: #fff;
+}
+
+/* ============================================================
+   DARK/LIGHT TOGGLE BUTTON
    ============================================================ */
 .pf-theme-toggle {
-    position: fixed;
-    top: 80px;
-    right: 20px;
-    z-index: 1000;
-    background: var(--pf-toggle-bg);
-    color: var(--pf-toggle-text);
-    border: none;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 50px;
-    padding: 8px 16px;
+    padding: 4px 12px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
 }
 
 .pf-theme-toggle:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+[data-pf-theme="light"] .pf-theme-toggle {
+    background: var(--pf-accent-light);
+    color: var(--pf-accent);
+    border-color: var(--pf-accent);
 }
 
 /* ============================================================
@@ -572,9 +646,12 @@
         grid-template-columns: 1fr;
     }
 
-    .pf-theme-toggle {
-        top: auto;
-        bottom: 20px;
-        right: 20px;
+    .pf-topbar {
+        padding: 6px 12px;
+    }
+
+    .pf-topbar__nav-btn {
+        padding: 3px 8px;
+        font-size: 11px;
     }
 }

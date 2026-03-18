@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
 
         <!-- ===== SKILL TAGS ===== -->
         <record id="tag_python" model="portfolio.skill.tag">
@@ -31,51 +31,76 @@
             <field name="category">junior</field>
             <field name="skill_tag_ids" eval="[(4, ref('tag_python')), (4, ref('tag_postgresql')), (4, ref('tag_docker'))]"/>
             <field name="profile_bio">&lt;p&gt;
-                Especialista en el ecosistema &lt;strong&gt;Odoo ERP&lt;/strong&gt; (v18/19). Mi enfoque se centra en la
-                creación de módulos personalizados que optimizan la lógica de negocio, utilizando herencia de modelos,
-                vistas XPath y reportes QWeb. Además, integro flujos de automatización con &lt;strong&gt;n8n&lt;/strong&gt;
-                y agentes de Inteligencia Artificial para transformar la operatividad empresarial.
+                Bachiller Técnico en Informática con formación autodidacta en el framework de &lt;strong&gt;Odoo&lt;/strong&gt;
+                (v18.0/19.0, Community Edition y Enterprise Edition). Experiencia práctica en desarrollo de módulos
+                personalizados, migraciones básicas de vistas entre versiones, gestión de entornos con
+                &lt;strong&gt;Docker/DevContainers&lt;/strong&gt; y automatización de procesos empresariales con
+                &lt;strong&gt;n8n&lt;/strong&gt; y agentes de IA.
             &lt;/p&gt;</field>
         </record>
 
         <!-- ===== HARD SKILLS ===== -->
         <record id="hard_skill_1" model="portfolio.skill.line">
             <field name="developer_hard_id" ref="developer_jordan"/>
-            <field name="name">Desarrollo de Add-ons</field>
+            <field name="name">Módulos Personalizados (modelos, vistas, seguridad, reportes)</field>
             <field name="checked">True</field>
             <field name="sequence">1</field>
         </record>
         <record id="hard_skill_2" model="portfolio.skill.line">
             <field name="developer_hard_id" ref="developer_jordan"/>
-            <field name="name">ORM API (search, browse, write)</field>
+            <field name="name">Python ORM &amp; Decoradores (@api.depends, @api.constrains, @api.onchange, @api.ondelete)</field>
             <field name="checked">True</field>
             <field name="sequence">2</field>
         </record>
         <record id="hard_skill_3" model="portfolio.skill.line">
             <field name="developer_hard_id" ref="developer_jordan"/>
-            <field name="name">Control de Versiones (Git)</field>
+            <field name="name">XML/XPath &amp; Reportes QWeb (PDF)</field>
             <field name="checked">True</field>
             <field name="sequence">3</field>
+        </record>
+        <record id="hard_skill_4" model="portfolio.skill.line">
+            <field name="developer_hard_id" ref="developer_jordan"/>
+            <field name="name">Vistas Kanban / Formulario / Lista / Búsqueda / Smart Buttons</field>
+            <field name="checked">True</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="hard_skill_5" model="portfolio.skill.line">
+            <field name="developer_hard_id" ref="developer_jordan"/>
+            <field name="name">Migraciones de vistas Odoo 18 → 19</field>
+            <field name="checked">True</field>
+            <field name="sequence">5</field>
         </record>
 
         <!-- ===== ECOSYSTEM SKILLS ===== -->
         <record id="eco_skill_1" model="portfolio.skill.line">
             <field name="developer_ecosystem_id" ref="developer_jordan"/>
-            <field name="name">Odoo Enterprise &amp; Community</field>
+            <field name="name">Docker / DevContainers (entornos aislados por proyecto)</field>
             <field name="checked">True</field>
             <field name="sequence">1</field>
         </record>
         <record id="eco_skill_2" model="portfolio.skill.line">
             <field name="developer_ecosystem_id" ref="developer_jordan"/>
-            <field name="name">Integración con Agentes IA</field>
+            <field name="name">Git / GitHub / SSH</field>
             <field name="checked">True</field>
             <field name="sequence">2</field>
         </record>
         <record id="eco_skill_3" model="portfolio.skill.line">
             <field name="developer_ecosystem_id" ref="developer_jordan"/>
-            <field name="name">Linux Server Admin</field>
+            <field name="name">n8n &amp; Agentes conversacionales (RAG con Supabase/Pinecone)</field>
             <field name="checked">True</field>
             <field name="sequence">3</field>
+        </record>
+        <record id="eco_skill_4" model="portfolio.skill.line">
+            <field name="developer_ecosystem_id" ref="developer_jordan"/>
+            <field name="name">MCP &amp; Integración WhatsApp / Telegram</field>
+            <field name="checked">True</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="eco_skill_5" model="portfolio.skill.line">
+            <field name="developer_ecosystem_id" ref="developer_jordan"/>
+            <field name="name">ElevenLabs TTS (Texto a voz)</field>
+            <field name="checked">True</field>
+            <field name="sequence">5</field>
         </record>
 
         <!-- ===== EXPERIENCIA ===== -->
@@ -84,20 +109,34 @@
             <field name="company">Proyecto Independiente / Freelance</field>
             <field name="position">Desarrollador Odoo Junior</field>
             <field name="location">Guayaquil, Ecuador</field>
-            <field name="date_start">2025-05-01</field>
+            <field name="date_start">2026-02-01</field>
             <field name="is_current">True</field>
-            <field name="highlights">Desarrollo de módulos completos con arquitectura profesional: modelos, vistas, seguridad, reportes QWeb y secuencias automáticas.
-Implementación de lógica de negocio con decoradores (@api.depends, @api.constrains, @api.onchange) y métodos ORM (search, create, write, unlink).
-Migración exitosa de módulos de Odoo 18 a 19, incluyendo refactorización de sintaxis deprecada y ajuste de vistas XML.
+            <field name="highlights">Desarrollo de módulos completos: modelos, vistas, seguridad, reportes QWeb y secuencias automáticas.
+Implementación de lógica de negocio con decoradores (@api.depends, @api.constrains, @api.onchange, @api.ondelete) y métodos ORM (search, create, write, unlink).
+Migración básica de vistas de módulos de Odoo 18 a 19.
 Configuración de entornos aislados con Docker/DevContainers y gestión de múltiples proyectos con archivos odoo.conf independientes.
-Desarrollo de scripts de restauración automatizada de backups (dump.sql + filestore) usando PostgreSQL.</field>
+Desarrollo de scripts de restauración automatizada de backups (dump.sql + filestore).</field>
+        </record>
+
+        <record id="exp_difare" model="portfolio.experience">
+            <field name="developer_id" ref="developer_jordan"/>
+            <field name="company">Grupo DIFARE</field>
+            <field name="position">Pasante de sistemas</field>
+            <field name="location">Guayas, Ecuador</field>
+            <field name="date_start">2025-02-01</field>
+            <field name="date_end">2025-03-31</field>
+            <field name="is_current">False</field>
+            <field name="highlights">Formateo e instalación de sistemas operativos y software en equipos de cómputo.
+Diagnóstico y reparación de hardware: desarme, inspección y reemplazo de componentes en laptops y PCs de escritorio.
+Gestión de inventario de equipos informáticos, incluyendo registro y control de activos.
+Formateo y mantenimiento de discos duros externos y unidades de almacenamiento.</field>
         </record>
 
         <!-- ===== PROYECTOS ===== -->
         <record id="proj_library" model="portfolio.project">
             <field name="developer_id" ref="developer_jordan"/>
             <field name="name">Sistema de Gestión Bibliotecaria (Library App)</field>
-            <field name="summary">Módulo integral para la administración de préstamos, autores y libros en Odoo.</field>
+            <field name="summary">Módulo integral para la administración de préstamos, autores y libros en Odoo (Proyecto de certificación).</field>
             <field name="highlights">Modelado relacional completo (Many2one, One2many, Many2many) con validaciones SQL (ISBN único) y constraints Python.
 Wizards (TransientModel) para renovación masiva de préstamos con cálculos de fechas automatizados y validación de estados.
 Seguridad por roles (Lector, Usuario, Bibliotecario) con herencia de grupos y reglas de registro dinámicas.
@@ -108,18 +147,17 @@ Herencia de res.partner para agregar campo "Socio de Biblioteca" al modelo de Co
         <record id="proj_sales" model="portfolio.project">
             <field name="developer_id" ref="developer_jordan"/>
             <field name="name">Sale.order — Extensión de Ventas</field>
-            <field name="summary">Personalización técnica del núcleo de ventas de Odoo.</field>
-            <field name="highlights">Herencia de modelos (_inherit sobre sale.order) y selectores XPath para inyectar campos en flujos de venta estándar.
-Smart Buttons con campos computados y filtrado por dominio para seguimiento de transacciones en tiempo real.</field>
+            <field name="summary">Personalización al módulo de ventas de Odoo.</field>
+            <field name="highlights">Herencia de modelos (_inherit sobre sale.order) y selectores XPath para agregar campos a vistas estándar del módulo de ventas.
+Smart Buttons con campos computados y filtrado por dominio para seguimiento de transacciones.</field>
             <field name="sequence">2</field>
         </record>
         <record id="proj_n8n" model="portfolio.project">
             <field name="developer_id" ref="developer_jordan"/>
             <field name="name">Automatización Empresarial con n8n</field>
-            <field name="summary">Flujos automatizados y agentes de IA para atención al cliente multicanal.</field>
+            <field name="summary">Flujos automatizados y agentes de IA para atención al cliente multicanal (Proyecto de certificación).</field>
             <field name="highlights">Chatbots multimodales con procesamiento de voz e imágenes, integrados a WhatsApp y Telegram.
-Agentes RAG con bases vectoriales (Supabase/Pinecone) para consulta inteligente de documentos empresariales.
-Escalamiento automático de conversaciones bot-a-humano mediante Chatwoot.</field>
+Agentes RAG con bases vectoriales (Supabase/Pinecone) para consulta inteligente de documentos empresariales y/o base de conocimiento.</field>
             <field name="sequence">3</field>
         </record>
 
