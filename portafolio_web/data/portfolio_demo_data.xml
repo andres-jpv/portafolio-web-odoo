@@ -42,13 +42,13 @@
         <!-- ===== HARD SKILLS ===== -->
         <record id="hard_skill_1" model="portfolio.skill.line">
             <field name="developer_hard_id" ref="developer_jordan"/>
-            <field name="name">Módulos Personalizados (modelos, vistas, seguridad, reportes)</field>
+            <field name="name">Odoo 18.0/19.0 (CE/EE) — Python ORM (Decoradores, Wizards, Secuencias)</field>
             <field name="checked">True</field>
             <field name="sequence">1</field>
         </record>
         <record id="hard_skill_2" model="portfolio.skill.line">
             <field name="developer_hard_id" ref="developer_jordan"/>
-            <field name="name">Python ORM &amp; Decoradores (@api.depends, @api.constrains, @api.onchange, @api.ondelete)</field>
+            <field name="name">PostgreSQL &amp; Migraciones básicas de vistas</field>
             <field name="checked">True</field>
             <field name="sequence">2</field>
         </record>
@@ -66,7 +66,7 @@
         </record>
         <record id="hard_skill_5" model="portfolio.skill.line">
             <field name="developer_hard_id" ref="developer_jordan"/>
-            <field name="name">Migraciones de vistas Odoo 18 → 19</field>
+            <field name="name">Bootstrap &amp; CSS</field>
             <field name="checked">True</field>
             <field name="sequence">5</field>
         </record>
