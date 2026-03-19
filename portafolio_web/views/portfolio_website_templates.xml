@@ -5,7 +5,7 @@
         <t t-call="website.layout">
             <t t-set="no_header" t-value="True"/>
             <t t-set="no_footer" t-value="True"/>
-            <t t-set="additional_title">Portafolio — <t t-esc="developer.name"/></t>
+            <t t-set="additional_title">Portafolio — <t t-out="developer.name"/></t>
 
             <div class="pf-wrapper" data-pf-theme="dark">
 
@@ -51,8 +51,8 @@
                         </t>
 
                         <!-- Nombre y título -->
-                        <h1 class="pf-hero__name" t-esc="developer.name"/>
-                        <p class="pf-hero__title" t-esc="developer.job_title"/>
+                        <h1 class="pf-hero__name" t-out="developer.name"/>
+                        <p class="pf-hero__title" t-out="developer.job_title"/>
 
                         <!-- Disponibilidad -->
                         <t t-if="developer.is_available">
@@ -62,7 +62,7 @@
                         <!-- Badges tecnologías -->
                         <div class="pf-hero__badges mt-3">
                             <t t-foreach="developer.skill_tag_ids" t-as="tag">
-                                <span class="pf-badge" t-esc="tag.name"/>
+                                <span class="pf-badge" t-out="tag.name"/>
                             </t>
                         </div>
 
@@ -74,7 +74,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                     </svg>
-                                    <span t-esc="developer.location"/>
+                                    <span t-out="developer.location"/>
                                 </span>
                             </t>
                             <t t-if="developer.linkedin">
@@ -85,7 +85,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                                     </svg>
-                                    <span t-esc="developer.linkedin"/>
+                                    <span t-out="developer.linkedin"/>
                                 </a>
                             </t>
                             <t t-if="developer.github">
@@ -96,7 +96,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
                                     </svg>
-                                    <span t-esc="developer.github"/>
+                                    <span t-out="developer.github"/>
                                 </a>
                             </t>
                         </div>
@@ -111,7 +111,7 @@
                     <t t-if="developer.profile_bio">
                         <section class="pf-section">
                             <h2 class="pf-section__title">Perfil Profesional</h2>
-                            <div class="pf-profile-text" t-raw="developer.profile_bio"/>
+                            <div class="pf-profile-text" t-out="developer.profile_bio"/>
                         </section>
                     </t>
 
@@ -126,7 +126,7 @@
                                         <p class="pf-skills-group__title">Hard Skills</p>
                                         <t t-foreach="developer.hard_skill_ids" t-as="skill">
                                             <div class="pf-skill-row">
-                                                <span t-esc="skill.name"/>
+                                                <span t-out="skill.name"/>
                                                 <t t-if="skill.checked">
                                                     <span class="pf-skill-check">&#10003;</span>
                                                 </t>
@@ -140,7 +140,7 @@
                                         <p class="pf-skills-group__title">Ecosistema</p>
                                         <t t-foreach="developer.ecosystem_skill_ids" t-as="skill">
                                             <div class="pf-skill-row">
-                                                <span t-esc="skill.name"/>
+                                                <span t-out="skill.name"/>
                                                 <t t-if="skill.checked">
                                                     <span class="pf-skill-check">&#10003;</span>
                                                 </t>
@@ -160,16 +160,16 @@
                                 <div class="pf-experience-item">
                                     <div class="pf-exp__header">
                                         <div>
-                                            <span class="pf-exp__title" t-esc="exp.position"/>
+                                            <span class="pf-exp__title" t-out="exp.position"/>
                                             <span class="text-muted">, </span>
-                                            <span class="pf-exp__company" t-esc="exp.company"/>
+                                            <span class="pf-exp__company" t-out="exp.company"/>
                                         </div>
                                         <span class="pf-exp__date">
                                             <t t-if="exp.date_start">
-                                                <t t-esc="exp.date_start"/>
+                                                <t t-out="exp.date_start"/>
                                             </t>
                                             <t t-if="exp.is_current"> — presente</t>
-                                            <t t-elif="exp.date_end"> — <t t-esc="exp.date_end"/></t>
+                                            <t t-elif="exp.date_end"> — <t t-out="exp.date_end"/></t>
                                         </span>
                                     </div>
                                     <t t-if="exp.location">
@@ -177,14 +177,14 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                             </svg>
-                                            <t t-esc="exp.location"/>
+                                            <t t-out="exp.location"/>
                                         </p>
                                     </t>
                                     <t t-if="exp.highlights">
                                         <ul class="pf-exp__highlights">
                                             <t t-foreach="exp.highlights.split('\n')" t-as="line">
                                                 <t t-if="line.strip()">
-                                                    <li t-esc="line.strip()"/>
+                                                    <li t-out="line.strip()"/>
                                                 </t>
                                             </t>
                                         </ul>
@@ -201,15 +201,15 @@
                             <div class="pf-projects-grid">
                                 <t t-foreach="developer.project_ids" t-as="proj">
                                     <div class="pf-project-card">
-                                        <div class="pf-project-card__name" t-esc="proj.name"/>
+                                        <div class="pf-project-card__name" t-out="proj.name"/>
                                         <t t-if="proj.summary">
-                                            <p class="pf-project-card__summary" t-esc="proj.summary"/>
+                                            <p class="pf-project-card__summary" t-out="proj.summary"/>
                                         </t>
                                         <t t-if="proj.highlights">
                                             <ul class="pf-project-card__highlights">
                                                 <t t-foreach="proj.highlights.split('\n')" t-as="line">
                                                     <t t-if="line.strip()">
-                                                        <li t-esc="line.strip()"/>
+                                                        <li t-out="line.strip()"/>
                                                     </t>
                                                 </t>
                                             </ul>
@@ -227,13 +227,13 @@
                             <t t-foreach="developer.course_ids" t-as="course">
                                 <div class="pf-course-item">
                                     <div>
-                                        <div class="pf-course-item__name" t-esc="course.name"/>
+                                        <div class="pf-course-item__name" t-out="course.name"/>
                                         <t t-if="course.institution">
-                                            <div class="pf-course-item__institution" t-esc="course.institution"/>
+                                            <div class="pf-course-item__institution" t-out="course.institution"/>
                                         </t>
                                     </div>
                                     <t t-if="course.year">
-                                        <span class="pf-course-item__year" t-esc="course.year"/>
+                                        <span class="pf-course-item__year" t-out="course.year"/>
                                     </t>
                                 </div>
                             </t>
@@ -248,11 +248,11 @@
                                 <div class="pf-education-item">
                                     <div class="pf-education-item__header">
                                         <div>
-                                            <div class="pf-education-item__institution" t-esc="edu.institution"/>
+                                            <div class="pf-education-item__institution" t-out="edu.institution"/>
                                             <t t-if="edu.degree">
                                                 <div class="pf-education-item__degree">
-                                                    <t t-esc="edu.degree"/>
-                                                    <t t-if="edu.area"> en <t t-esc="edu.area"/></t>
+                                                    <t t-out="edu.degree"/>
+                                                    <t t-if="edu.area"> en <t t-out="edu.area"/></t>
                                                 </div>
                                             </t>
                                             <t t-if="edu.location">
@@ -260,17 +260,17 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                                                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                                     </svg>
-                                                    <t t-esc="edu.location"/>
+                                                    <t t-out="edu.location"/>
                                                 </div>
                                             </t>
                                         </div>
                                         <div class="pf-education-item__date">
-                                            <t t-if="edu.date_start"><t t-esc="edu.date_start"/></t>
-                                            <t t-if="edu.date_end"> — <t t-esc="edu.date_end"/></t>
+                                            <t t-if="edu.date_start"><t t-out="edu.date_start"/></t>
+                                            <t t-if="edu.date_end"> — <t t-out="edu.date_end"/></t>
                                         </div>
                                     </div>
                                     <t t-if="edu.highlights">
-                                        <div class="pf-education-item__highlights" t-esc="edu.highlights"/>
+                                        <div class="pf-education-item__highlights" t-out="edu.highlights"/>
                                     </t>
                                 </div>
                             </t>

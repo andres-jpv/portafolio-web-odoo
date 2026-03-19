@@ -5,7 +5,7 @@
         <t t-call="website.layout">
             <t t-set="no_header" t-value="True"/>
             <t t-set="no_footer" t-value="True"/>
-            <t t-set="additional_title">Portafolio Backend — <t t-esc="developer.name"/></t>
+            <t t-set="additional_title">Portafolio Backend — <t t-out="developer.name"/></t>
 
             <div class="ob-root">
 
@@ -30,9 +30,9 @@
                         <div class="ob-navbar__icon ob-navbar__icon--hidden-xs" title="Mensajes">&#128172;</div>
                         <div class="ob-navbar__user">
                             <div class="ob-navbar__avatar">
-                                <t t-esc="developer.name[:2].upper() if developer.name else 'JP'"/>
+                                <t t-out="developer.name[:2].upper() if developer.name else 'JP'"/>
                             </div>
-                            <span class="ob-navbar__username ob-navbar__icon--hidden-xs" t-esc="developer.name"/>
+                            <span class="ob-navbar__username ob-navbar__icon--hidden-xs" t-out="developer.name"/>
                         </div>
                     </div>
                 </nav>
@@ -42,7 +42,7 @@
                     <div class="ob-control-panel__breadcrumb">
                         <a href="/portafolioweb">Desarrolladores</a>
                         <span class="sep">&#8250;</span>
-                        <span class="current" t-esc="developer.name"/>
+                        <span class="current" t-out="developer.name"/>
                     </div>
                     <div class="ob-control-panel__actions">
                         <a href="/portafolio" class="ob-btn ob-btn-secondary">
@@ -148,7 +148,7 @@
                             <!-- Stat buttons (only Proyectos + Versión) -->
                             <div class="ob-button-box">
                                 <div class="ob-stat-btn">
-                                    <span class="ob-stat-btn__value" t-esc="developer.project_count"/>
+                                    <span class="ob-stat-btn__value" t-out="developer.project_count"/>
                                     <span class="ob-stat-btn__label">Proyectos</span>
                                 </div>
                                 <div class="ob-stat-btn">
@@ -169,11 +169,11 @@
                                 </t>
 
                                 <div class="ob-title">
-                                    <h1 t-esc="developer.name"/>
-                                    <h4 t-esc="developer.job_title"/>
+                                    <h1 t-out="developer.name"/>
+                                    <h4 t-out="developer.job_title"/>
                                     <div class="ob-tags">
                                         <t t-foreach="developer.skill_tag_ids" t-as="tag">
-                                            <span class="ob-tag" t-esc="tag.name"/>
+                                            <span class="ob-tag" t-out="tag.name"/>
                                         </t>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
                                     <t t-if="developer.location">
                                         <div class="ob-field-row">
                                             <span class="ob-field-label"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ubicación</span>
-                                            <span class="ob-field-value" t-esc="developer.location"/>
+                                            <span class="ob-field-value" t-out="developer.location"/>
                                         </div>
                                     </t>
                                     <t t-if="developer.linkedin">
@@ -194,7 +194,7 @@
                                             <span class="ob-field-value">
                                                 <a t-attf-href="https://linkedin.com/in/#{developer.linkedin}"
                                                    target="_blank" rel="noopener"
-                                                   t-esc="developer.linkedin"/>
+                                                   t-out="developer.linkedin"/>
                                             </span>
                                         </div>
                                     </t>
@@ -205,7 +205,7 @@
                                             <span class="ob-field-label"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Categoría</span>
                                             <span class="ob-field-value">
                                                 <span class="ob-badge-category">
-                                                    Developer / <t t-esc="developer.category.capitalize()"/>
+                                                    Developer / <t t-out="developer.category.capitalize()"/>
                                                 </span>
                                             </span>
                                         </div>
@@ -216,7 +216,7 @@
                                             <span class="ob-field-value">
                                                 <a t-attf-href="https://github.com/#{developer.github}"
                                                    target="_blank" rel="noopener"
-                                                   t-esc="developer.github"/>
+                                                   t-out="developer.github"/>
                                             </span>
                                         </div>
                                     </t>
@@ -243,7 +243,7 @@
                                     <!-- Perfil Profesional -->
                                     <t t-if="developer.profile_bio">
                                         <div class="ob-section-title">Perfil Profesional</div>
-                                        <div class="ob-profile-bio" t-raw="developer.profile_bio"/>
+                                        <div class="ob-profile-bio" t-out="developer.profile_bio"/>
                                     </t>
 
                                     <!-- Habilidades -->
@@ -261,7 +261,7 @@
                                                         <tbody>
                                                             <t t-foreach="developer.hard_skill_ids" t-as="skill">
                                                                 <tr>
-                                                                    <td t-esc="skill.name"/>
+                                                                    <td t-out="skill.name"/>
                                                                     <td style="text-align:center;">
                                                                         <t t-if="skill.checked">
                                                                             <span class="ob-check-yes">&#10003;</span>
@@ -285,7 +285,7 @@
                                                         <tbody>
                                                             <t t-foreach="developer.ecosystem_skill_ids" t-as="skill">
                                                                 <tr>
-                                                                    <td t-esc="skill.name"/>
+                                                                    <td t-out="skill.name"/>
                                                                     <td style="text-align:center;">
                                                                         <t t-if="skill.checked">
                                                                             <span class="ob-check-yes">&#10003;</span>
@@ -321,12 +321,12 @@
                                             <tbody>
                                                 <t t-foreach="developer.experience_ids" t-as="exp">
                                                     <tr>
-                                                        <td t-esc="exp.position"/>
-                                                        <td t-esc="exp.company"/>
-                                                        <td class="muted ob-col--hidden-xs" t-esc="exp.location"/>
-                                                        <td class="muted ob-col--hidden-xs" t-esc="exp.date_start"/>
+                                                        <td t-out="exp.position"/>
+                                                        <td t-out="exp.company"/>
+                                                        <td class="muted ob-col--hidden-xs" t-out="exp.location"/>
+                                                        <td class="muted ob-col--hidden-xs" t-out="exp.date_start"/>
                                                         <td class="muted ob-col--hidden-xs">
-                                                            <t t-if="not exp.is_current" t-esc="exp.date_end"/>
+                                                            <t t-if="not exp.is_current" t-out="exp.date_end"/>
                                                         </td>
                                                         <td style="text-align:center;">
                                                             <t t-if="exp.is_current">
@@ -351,8 +351,8 @@
                                             <tbody>
                                                 <t t-foreach="developer.project_ids" t-as="proj">
                                                     <tr>
-                                                        <td t-esc="proj.name"/>
-                                                        <td class="muted ob-col--hidden-xs" t-esc="proj.summary"/>
+                                                        <td t-out="proj.name"/>
+                                                        <td class="muted ob-col--hidden-xs" t-out="proj.summary"/>
                                                     </tr>
                                                 </t>
                                             </tbody>
@@ -376,9 +376,9 @@
                                             <tbody>
                                                 <t t-foreach="developer.course_ids" t-as="course">
                                                     <tr>
-                                                        <td t-esc="course.name"/>
-                                                        <td class="muted ob-col--hidden-xs" t-esc="course.institution"/>
-                                                        <td class="muted" t-esc="course.year"/>
+                                                        <td t-out="course.name"/>
+                                                        <td class="muted ob-col--hidden-xs" t-out="course.institution"/>
+                                                        <td class="muted" t-out="course.year"/>
                                                     </tr>
                                                 </t>
                                             </tbody>
@@ -400,11 +400,11 @@
                                             <tbody>
                                                 <t t-foreach="developer.education_ids" t-as="edu">
                                                     <tr>
-                                                        <td t-esc="edu.institution"/>
-                                                        <td class="muted ob-col--hidden-xs" t-esc="edu.degree"/>
-                                                        <td class="muted ob-col--hidden-xs" t-esc="edu.area"/>
-                                                        <td class="muted ob-col--hidden-xs" t-esc="edu.date_start"/>
-                                                        <td class="muted ob-col--hidden-xs" t-esc="edu.date_end"/>
+                                                        <td t-out="edu.institution"/>
+                                                        <td class="muted ob-col--hidden-xs" t-out="edu.degree"/>
+                                                        <td class="muted ob-col--hidden-xs" t-out="edu.area"/>
+                                                        <td class="muted ob-col--hidden-xs" t-out="edu.date_start"/>
+                                                        <td class="muted ob-col--hidden-xs" t-out="edu.date_end"/>
                                                     </tr>
                                                 </t>
                                             </tbody>
