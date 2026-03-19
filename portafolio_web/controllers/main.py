@@ -70,7 +70,7 @@ class PortfolioWebController(http.Controller):
         try:
             request.env['mail.mail'].sudo().create({
                 'subject': f'[Portafolio] Contacto de {nombre}',
-                'email_from': email,
+                'email_from': dest_email,
                 'email_to': dest_email,
                 'reply_to': email,
                 'body_html': cuerpo,
