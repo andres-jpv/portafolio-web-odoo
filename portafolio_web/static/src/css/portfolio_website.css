@@ -77,6 +77,29 @@
     gap: 8px;
 }
 
+/* Botón Contactar en topbar */
+.pf-topbar__contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    background: var(--pf-accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .15s;
+    margin-left: auto;
+}
+.pf-topbar__contact-btn:hover { opacity: .85; }
+
+[data-pf-theme="light"] .pf-topbar__contact-btn {
+    background: var(--pf-accent);
+    color: #fff;
+}
+
 .pf-topbar__label {
     font-size: 12px;
     color: rgba(255,255,255,0.5);
@@ -654,4 +677,161 @@
         padding: 3px 8px;
         font-size: 11px;
     }
+}
+
+/* ====== MODAL CONTACTAR v1 ====== */
+.pf-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+}
+
+.pf-modal {
+    background: var(--pf-bg-card);
+    border: 1px solid var(--pf-border);
+    border-radius: 10px;
+    box-shadow: var(--pf-card-shadow);
+    width: 100%;
+    max-width: 560px;
+    overflow: hidden;
+    animation: pf-modal-in .18s ease;
+}
+
+@keyframes pf-modal-in {
+    from { transform: translateY(-20px); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+.pf-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--pf-bg-header);
+    border-bottom: 1px solid var(--pf-border);
+}
+
+.pf-modal__title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--pf-text-header);
+}
+
+.pf-modal__close {
+    background: none;
+    border: none;
+    color: var(--pf-text-muted);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 4px;
+}
+.pf-modal__close:hover { color: var(--pf-text); }
+
+.pf-modal__body {
+    padding: 20px;
+}
+
+.pf-modal__row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.pf-modal__field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pf-modal__label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--pf-text-muted);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+.pf-modal__input,
+.pf-modal__textarea {
+    background: var(--pf-bg);
+    border: 1px solid var(--pf-border);
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 13px;
+    color: var(--pf-text);
+    outline: none;
+    transition: border-color .15s;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
+.pf-modal__input:focus,
+.pf-modal__textarea:focus {
+    border-color: var(--pf-accent);
+    box-shadow: 0 0 0 2px rgba(167,139,250,.2);
+}
+.pf-modal__textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.pf-modal__status {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+}
+.pf-modal__status--ok  { background: rgba(74,222,128,.15); color: #4ade80; border: 1px solid rgba(74,222,128,.3); }
+.pf-modal__status--err { background: rgba(248,113,113,.15); color: #f87171; border: 1px solid rgba(248,113,113,.3); }
+
+.pf-modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 12px 20px;
+    border-top: 1px solid var(--pf-border);
+    background: var(--pf-bg-header);
+}
+
+.pf-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--pf-accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .15s;
+}
+.pf-btn-primary:hover { opacity: .85; }
+
+.pf-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: transparent;
+    color: var(--pf-text-muted);
+    border: 1px solid var(--pf-border);
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color .15s;
+}
+.pf-btn-secondary:hover { border-color: var(--pf-accent); color: var(--pf-accent); }
+
+@media (max-width: 520px) {
+    .pf-modal__row { flex-direction: column; }
 }

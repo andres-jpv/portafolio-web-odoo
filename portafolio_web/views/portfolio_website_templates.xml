@@ -16,6 +16,13 @@
                         <a href="/portafolio" class="pf-topbar__nav-btn pf-topbar__nav-btn--active">v1 Web</a>
                         <a href="/portafolioweb" class="pf-topbar__nav-btn">v2 Backend</a>
                     </div>
+                    <button type="button" id="pf-contactar-btn" class="pf-topbar__contact-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        Contactar
+                    </button>
+
                     <button id="pf-theme-toggle"
                             class="pf-theme-toggle"
                             title="Cambiar a modo claro">
@@ -61,26 +68,6 @@
 
                         <!-- Contacto -->
                         <div class="pf-hero__contacts">
-                            <t t-if="developer.email">
-                                <a t-attf-href="mailto:#{developer.email}"
-                                   class="pf-hero__contact-item">
-                                    <!-- Email icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                    </svg>
-                                    <span t-esc="developer.email"/>
-                                </a>
-                            </t>
-                            <t t-if="developer.phone">
-                                <a t-attf-href="tel:#{developer.phone}"
-                                   class="pf-hero__contact-item">
-                                    <!-- Phone icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                                    </svg>
-                                    <span t-esc="developer.phone"/>
-                                </a>
-                            </t>
                             <t t-if="developer.location">
                                 <span class="pf-hero__contact-item">
                                     <!-- Location icon -->
@@ -291,6 +278,108 @@
                     </t>
 
                 </div><!-- /pf-content -->
+
+                <!-- ====== MODAL CONTACTAR (v1 dark) ====== -->
+                <div id="pf-contact-modal" class="pf-modal-overlay" style="display:none;">
+                    <div class="pf-modal">
+                        <div class="pf-modal__header">
+                            <h3 class="pf-modal__title">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:6px;">
+                                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                                Contactar
+                            </h3>
+                            <button type="button" id="pf-modal-close" class="pf-modal__close">&#10005;</button>
+                        </div>
+                        <form id="pf-contact-form" method="post" action="/portafolioweb/contactar">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="pf-modal__body">
+                                <div class="pf-modal__row">
+                                    <div class="pf-modal__field">
+                                        <label class="pf-modal__label">Nombre completo <span style="color:#f87171;">*</span></label>
+                                        <input type="text" name="nombre" class="pf-modal__input" placeholder="Tu nombre" required="required"/>
+                                    </div>
+                                    <div class="pf-modal__field">
+                                        <label class="pf-modal__label">Correo electrónico <span style="color:#f87171;">*</span></label>
+                                        <input type="email" name="email" class="pf-modal__input" placeholder="tu@correo.com" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="pf-modal__row">
+                                    <div class="pf-modal__field">
+                                        <label class="pf-modal__label">Empresa</label>
+                                        <input type="text" name="empresa" class="pf-modal__input" placeholder="Nombre de tu empresa (opcional)"/>
+                                    </div>
+                                    <div class="pf-modal__field">
+                                        <label class="pf-modal__label">Cargo</label>
+                                        <input type="text" name="cargo" class="pf-modal__input" placeholder="Tu cargo (opcional)"/>
+                                    </div>
+                                </div>
+                                <div class="pf-modal__field" style="margin-top:10px;">
+                                    <label class="pf-modal__label">Mensaje <span style="color:#f87171;">*</span></label>
+                                    <textarea name="mensaje" class="pf-modal__textarea" rows="4" placeholder="¿En qué puedo ayudarte?" required="required"/>
+                                </div>
+                                <div id="pf-contact-status" class="pf-modal__status" style="display:none;"/>
+                            </div>
+                            <div class="pf-modal__footer">
+                                <button type="button" id="pf-modal-cancel" class="pf-btn-secondary">Cancelar</button>
+                                <button type="submit" id="pf-contact-submit" class="pf-btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                    </svg>
+                                    Enviar mensaje
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <script>
+                (function () {
+                    var overlay    = document.getElementById('pf-contact-modal');
+                    var openBtn    = document.getElementById('pf-contactar-btn');
+                    var closeBtn   = document.getElementById('pf-modal-close');
+                    var cancelBtn  = document.getElementById('pf-modal-cancel');
+                    var form       = document.getElementById('pf-contact-form');
+                    var statusDiv  = document.getElementById('pf-contact-status');
+
+                    function open()  { overlay.style.display = 'flex'; }
+                    function close() { overlay.style.display = 'none'; statusDiv.style.display = 'none'; form.reset(); }
+
+                    openBtn.addEventListener('click', open);
+                    closeBtn.addEventListener('click', close);
+                    cancelBtn.addEventListener('click', close);
+                    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        var submitBtn = document.getElementById('pf-contact-submit');
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Enviando...';
+                        fetch('/portafolioweb/contactar', {
+                            method: 'POST',
+                            body: new FormData(form),
+                        }).then(function (r) { return r.json(); }).then(function (data) {
+                            statusDiv.style.display = 'block';
+                            if (data.ok) {
+                                statusDiv.className = 'pf-modal__status pf-modal__status--ok';
+                                statusDiv.textContent = '¡Mensaje enviado! Te responderé lo antes posible.';
+                                form.reset();
+                                setTimeout(close, 2500);
+                            } else {
+                                statusDiv.className = 'pf-modal__status pf-modal__status--err';
+                                statusDiv.textContent = data.error || 'Error al enviar. Intenta de nuevo.';
+                            }
+                        }).catch(function () {
+                            statusDiv.style.display = 'block';
+                            statusDiv.className = 'pf-modal__status pf-modal__status--err';
+                            statusDiv.textContent = 'Error de conexión.';
+                        }).finally(function () {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Enviar mensaje';
+                        });
+                    });
+                })();
+                </script>
 
             </div><!-- /pf-wrapper -->
         </t>

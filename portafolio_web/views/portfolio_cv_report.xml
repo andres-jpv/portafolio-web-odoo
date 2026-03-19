@@ -45,9 +45,7 @@
                         <h1 style="font-size:20pt; margin:0 0 4px; color:#1a1a2e;" t-esc="dev.name"/>
                         <p style="margin:2px 0; color:#714b67; font-size:11pt; font-weight:600;" t-esc="dev.job_title"/>
                         <p style="margin:4px 0; font-size:9pt; color:#6c757d;">
-                            <t t-if="dev.location"><t t-esc="dev.location"/>&#160;|&#160;</t>
-                            <t t-if="dev.email"><t t-esc="dev.email"/>&#160;|&#160;</t>
-                            <t t-if="dev.phone"><t t-esc="dev.phone"/></t>
+                            <t t-if="dev.location"><t t-esc="dev.location"/></t>
                         </p>
                         <p style="margin:2px 0; font-size:9pt; color:#6c757d;">
                             <t t-if="dev.linkedin">linkedin.com/in/<t t-esc="dev.linkedin"/>&#160;&#160;</t>
