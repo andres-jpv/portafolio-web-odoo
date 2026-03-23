@@ -26,7 +26,7 @@ Mostrar las capacidades de Odoo como framework web para construir sitios persona
 
 ## 📸 Vista previa
 
-https://github.com/andres-jpv/portafolio-web-odoo/raw/main/PortfolioDemo.mp4
+![Portfolio Demo](ezgif-173d0ac23c13a91b.gif)
 
 ---
 
