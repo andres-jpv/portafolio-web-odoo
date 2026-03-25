@@ -6,6 +6,11 @@
             <t t-set="no_header" t-value="True"/>
             <t t-set="no_footer" t-value="True"/>
             <t t-set="additional_title">Portafolio — <t t-out="developer.name"/></t>
+            <t t-set="title">Portafolio — <t t-out="developer.name"/></t>
+            <t t-set="head">
+                <link rel="shortcut icon" href="/portafolio_web/static/src/img/favicon.svg" type="image/svg+xml"/>
+                <link rel="icon" href="/portafolio_web/static/src/img/favicon.svg" type="image/svg+xml"/>
+            </t>
 
             <div class="pf-wrapper" data-pf-theme="dark">
 

@@ -18,7 +18,7 @@
 
         <!-- ===== DEVELOPER ===== -->
         <record id="developer_jordan" model="portfolio.developer">
-            <field name="name">Jordan Andres Pincay Vinces</field>
+            <field name="name">Jordan Pincay</field>
             <field name="job_title">Desarrollador Backend Odoo &amp; Automatización IA</field>
             <field name="email">j.pincayvinces@gmail.com</field>
             <field name="phone">+593 99 071 1798</field>

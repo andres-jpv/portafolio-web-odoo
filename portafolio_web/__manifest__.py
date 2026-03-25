@@ -10,7 +10,7 @@
         - Página web pública accesible en /portafolio
         - Toggle dark/light mode con persistencia en localStorage
     """,
-    'author': 'Jordan Andres Pincay Vinces',
+    'author': 'Jordan Pincay',
     'website': '',
     'category': 'Website',
     'depends': ['website', 'web', 'mail'],
